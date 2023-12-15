@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/login/models/login_form.dart';
-import 'package:quizz_app_provider/login/screens/login.dart'
-    show EmailInput, PasswordInput;
-
-import '../authentication_status.dart';
+import 'package:quizz_app_provider/login/widgets/create_account_button.dart';
+import 'package:quizz_app_provider/login/widgets/email_input.dart';
+import 'package:quizz_app_provider/login/widgets/password_input.dart';
+import 'package:quizz_app_provider/login/widgets/pseudo_input.dart';
 
 class AccountCreationPage extends StatelessWidget {
   const AccountCreationPage({super.key});
@@ -29,7 +28,10 @@ class AccountCreationPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         EmailInput(),
+                        SizedBox(height: 8),
                         PasswordInput(),
+                        SizedBox(height: 8),
+                        PseudoInput(),
                         SizedBox(height: 8),
                         CreateAccountButton()
                       ],
@@ -40,34 +42,5 @@ class AccountCreationPage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class CreateAccountButton extends StatelessWidget {
-  const CreateAccountButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<LoginForm>(builder: (context, loginForm, child) {
-      return ElevatedButton(
-        key: const Key('loginForm_continue_raisedButton'),
-        onPressed: loginForm.isValid
-            ? () async {
-                await loginForm
-                    .createUser(loginForm.email.value, loginForm.password.value)
-                    .then((value) {});
-              }
-            : () {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    const SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text('Identifiants invalides')),
-                  );
-              },
-        child: const Text('CRÉER MON COMPTE'),
-      );
-    });
   }
 }

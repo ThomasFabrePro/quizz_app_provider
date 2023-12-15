@@ -1,6 +1,7 @@
 //import hhtp package
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:quizz_app_provider/app.dart';
 import 'package:quizz_app_provider/login/authentication_status.dart';
 
 class WebService {
@@ -23,8 +24,14 @@ mixin ConnectUser {
           'password': password,
         }),
       );
-      if (response.statusCode == 200) {
+      print("TEST response status code : ${response.statusCode}");
+
+      if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
+        user = user.copyWith(pseudo: data["user"]['pseudo']);
+
+        print("TEST response body : ${response.body}");
+        print("TEST user pseudo : ${user.pseudo}");
         return AuthenticationStatus.authenticated;
       } else {
         return AuthenticationStatus.failed;
@@ -35,7 +42,8 @@ mixin ConnectUser {
   }
 }
 mixin CreateUser {
-  Future<AuthenticationStatus> createUser(String email, String password) async {
+  Future<AuthenticationStatus> createUser(
+      String email, String password, String pseudo) async {
     const String path = '/api/auth/register';
     String url = WebService._baseUrl + path;
     try {
@@ -47,16 +55,19 @@ mixin CreateUser {
         body: jsonEncode(<String, String>{
           'email': email,
           'password': password,
+          'pseudo': pseudo,
         }),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
+        user = user.copyWith(pseudo: data["user"]['pseudo']);
         return AuthenticationStatus.authenticated;
-      } else {
-        return AuthenticationStatus.failed;
       }
+      if (response.statusCode == 401)
+        return AuthenticationStatus.unauthenticated;
+      return AuthenticationStatus.failed;
     } catch (e) {
-      return AuthenticationStatus.unauthenticated;
+      return AuthenticationStatus.failed;
     }
   }
 }
