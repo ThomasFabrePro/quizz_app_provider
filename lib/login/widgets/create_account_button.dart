@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/login/authentication_status.dart';
 import 'package:quizz_app_provider/login/models/login_form.dart';
 
@@ -11,6 +12,10 @@ class CreateAccountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LoginForm>(builder: (context, loginForm, child) {
       return ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(ThemeConfig.primaryColor),
+        ),
         key: const Key('loginForm_continue_raisedButton'),
         onPressed: loginForm.isValid
             ? () async {
@@ -55,7 +60,8 @@ class CreateAccountButton extends StatelessWidget {
                         content: Text('Identifiants invalides')),
                   );
               },
-        child: const Text('CRÉER MON COMPTE'),
+        child: const Text('CRÉER MON COMPTE',
+            style: TextStyle(color: ThemeConfig.tertiaryColor)),
       );
     });
   }

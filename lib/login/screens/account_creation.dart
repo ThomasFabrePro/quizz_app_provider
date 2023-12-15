@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/login/models/login_form.dart';
 import 'package:quizz_app_provider/login/widgets/create_account_button.dart';
 import 'package:quizz_app_provider/login/widgets/email_input.dart';
@@ -12,12 +13,16 @@ class AccountCreationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Account Creation'),
+        elevation: 0,
+        title: const Text('Account Creation',
+            style: TextStyle(color: ThemeConfig.primaryColor)),
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Container(
             constraints: const BoxConstraints(maxWidth: 400),
             child: ChangeNotifierProvider(

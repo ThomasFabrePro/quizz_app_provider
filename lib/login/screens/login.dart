@@ -15,43 +15,46 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        // backgroundColor: Color.fromARGB(255, 92, 255, 193),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Login'),
+      //   // backgroundColor: Color.fromARGB(255, 92, 255, 193),
+      // ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 400),
-            child: ChangeNotifierProvider(
-                create: (context) => LoginForm(pseudo: const Pseudo.dirty('/')),
-                child: Builder(
-                  builder: (context) {
-                    return const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image(
-                            image: AssetImage('assets/logo_small.png'),
-                            height: 200,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: SingleChildScrollView(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: ChangeNotifierProvider(
+                  create: (context) =>
+                      LoginForm(pseudo: const Pseudo.dirty('/')),
+                  child: Builder(
+                    builder: (context) {
+                      return const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Image(
+                              image: AssetImage('assets/logo_small.png'),
+                              height: 200,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 80),
-                        EmailInput(),
-                        SizedBox(height: 16),
-                        PasswordInput(),
-                        SizedBox(height: 16),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: AccountCreationLink()),
-                        SizedBox(height: 40),
-                        SubmitButton()
-                      ],
-                    );
-                  },
-                )),
+                          SizedBox(height: 80),
+                          EmailInput(),
+                          SizedBox(height: 16),
+                          PasswordInput(),
+                          SizedBox(height: 16),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: AccountCreationLink()),
+                          SizedBox(height: 40),
+                          SubmitButton()
+                        ],
+                      );
+                    },
+                  )),
+            ),
           ),
         ),
       ),

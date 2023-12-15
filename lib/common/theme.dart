@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 final appTheme = ThemeData(
-  // colorSchemeSeed: const Color.fromARGB(255, 30, 2, 94),
-  // primaryColor: const Color.fromARGB(255, 30, 2, 94),
   scaffoldBackgroundColor: const Color.fromARGB(255, 30, 2, 94),
-  // useMaterial3: true,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: ThemeConfig.primaryColor,
+    ),
+  ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontFamily: 'Corben',
@@ -14,3 +16,8 @@ final appTheme = ThemeData(
     ),
   ),
 );
+
+class ThemeConfig {
+  static const Color primaryColor = Color.fromARGB(255, 71, 253, 183);
+  static const Color tertiaryColor = Color.fromARGB(255, 30, 2, 94);
+}
