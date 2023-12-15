@@ -63,8 +63,9 @@ mixin CreateUser {
         user = user.copyWith(pseudo: data["user"]['pseudo']);
         return AuthenticationStatus.authenticated;
       }
-      if (response.statusCode == 401)
+      if (response.statusCode == 401) {
         return AuthenticationStatus.unauthenticated;
+      }
       return AuthenticationStatus.failed;
     } catch (e) {
       return AuthenticationStatus.failed;

@@ -16,7 +16,23 @@ GoRouter router() {
         routes: <RouteBase>[
           GoRoute(
             path: 'account_creation',
-            builder: (context, state) => const AccountCreationPage(),
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const AccountCreationPage(),
+                transitionDuration: const Duration(milliseconds: 500),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  // Change the opacity of the screen using a Curve based on the the animation's
+                  // value
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc)
+                        .animate(animation),
+                    child: child,
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
@@ -28,7 +44,7 @@ GoRouter router() {
   );
 }
 
-User user = User(pseudo: '');
+User user = const User(pseudo: '');
 
 class App extends StatelessWidget {
   const App({super.key});

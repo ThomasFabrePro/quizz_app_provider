@@ -33,6 +33,7 @@ class EmailInput extends StatelessWidget {
               border: InputBorder.none,
               labelText: 'Email',
               labelStyle: const TextStyle(color: Colors.white),
+              errorStyle: const TextStyle(color: Colors.blueAccent),
               errorText:
                   loginForm.email.isNotValid && loginForm.email.value != ""
                       ? 'Email invalide'
