@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/home_page.dart';
 import 'package:quizz_app_provider/login/screens/account_creation.dart';
 import 'package:quizz_app_provider/login/screens/login.dart';
@@ -36,6 +37,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      theme: appTheme,
       routerConfig: router(),
     );
   }

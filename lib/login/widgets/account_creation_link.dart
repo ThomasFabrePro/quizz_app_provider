@@ -10,7 +10,7 @@ class AccountCreationLink extends StatelessWidget {
       key: const Key('loginForm_createAccount_flatButton'),
       onTap: () => context.go('/login/account_creation'),
       child: const Text(
-        'Create an account',
+        'Créer un compte',
         style:
             TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
       ),

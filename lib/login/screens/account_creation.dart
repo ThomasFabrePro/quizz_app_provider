@@ -27,12 +27,20 @@ class AccountCreationPage extends StatelessWidget {
                     return const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Image(
+                            image: AssetImage('assets/logo_small.png'),
+                            height: 200,
+                          ),
+                        ),
+                        SizedBox(height: 80),
                         EmailInput(),
-                        SizedBox(height: 8),
+                        SizedBox(height: 16),
                         PasswordInput(),
-                        SizedBox(height: 8),
+                        SizedBox(height: 16),
                         PseudoInput(),
-                        SizedBox(height: 8),
+                        SizedBox(height: 40),
                         CreateAccountButton()
                       ],
                     );
