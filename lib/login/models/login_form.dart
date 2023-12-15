@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
-import 'package:quizz_app_provider/login/models/password_model.dart';
-import 'package:quizz_app_provider/login/models/email_model.dart';
+
+import 'login_models.dart';
 
 class LoginForm extends ChangeNotifier with FormzMixin {
   LoginForm({
