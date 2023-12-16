@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/login/widgets/custom_shaped_container.dart';
+import 'package:quizz_app_provider/login/widgets/custom_shaped_containers/login_background.dart';
 
 class BasePage extends StatelessWidget {
   final String appBarText;
@@ -15,7 +15,9 @@ class BasePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         title: Text(appBarText,
-            style: const TextStyle(color: ThemeConfig.primaryColor)),
+            style: const TextStyle(
+                color: ThemeConfig.primaryColor,
+                fontSize: ThemeConfig.appBarFontSize)),
         backgroundColor: Colors.transparent,
       ),
       body: Center(
@@ -25,10 +27,12 @@ class BasePage extends StatelessWidget {
             children: [
               Positioned(
                 top: 0,
-                child: CustomPaint(
-                  painter: CustomShapedContainer(),
-                  size: const Size(
-                      ThemeConfig.maxWidth, ThemeConfig.maxWidth * 2),
+                child: RepaintBoundary(
+                  child: CustomPaint(
+                    painter: LoginBackground(),
+                    size: const Size(
+                        ThemeConfig.maxWidth, ThemeConfig.maxWidth * 2),
+                  ),
                 ),
               ),
               child,

@@ -25,7 +25,6 @@ mixin ConnectUser {
           'password': password,
         }),
       );
-      print("response status code : ${response.statusCode}");
 
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
@@ -60,8 +59,6 @@ mixin CreateUser {
           'pseudo': pseudo,
         }),
       );
-      print("response status code : ${response.statusCode}");
-      print("response status code : ${response.body}");
 
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
@@ -90,29 +87,4 @@ mixin DisconnectUser {
       value.remove('password');
     });
   }
-  // Future<AuthenticationStatus> disconnectUser() async {
-  //   const String path = '/api/auth/logout';
-  //   String url = WebService._baseUrl + path;
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse(url),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json',
-  //       },
-  //     );
-  //     print("response status code : ${response.statusCode}");
-
-  //     if (response.statusCode == 200) {
-  //       SharedPreferences.getInstance().then((value) {
-  //         value.remove('email');
-  //         value.remove('password');
-  //       });
-  //       return AuthenticationStatus.unauthenticated;
-  //     } else {
-  //       return AuthenticationStatus.failed;
-  //     }
-  //   } catch (e) {
-  //     return AuthenticationStatus.failed;
-  //   }
-  // }
 }

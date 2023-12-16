@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 
-class CustomShapedContainer extends CustomPainter {
+class LoginBackground extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Layer 1
