@@ -19,5 +19,7 @@ final appTheme = ThemeData(
 
 class ThemeConfig {
   static const Color primaryColor = Color.fromARGB(255, 71, 253, 183);
+  static const Color secondaryColor = Color.fromARGB(166, 94, 15, 158);
   static const Color tertiaryColor = Color.fromARGB(255, 30, 2, 94);
+  static const double maxWidth = 400;
 }

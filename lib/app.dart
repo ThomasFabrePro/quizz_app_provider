@@ -3,13 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/home_page.dart';
 import 'package:quizz_app_provider/login/screens/account_creation.dart';
+import 'package:quizz_app_provider/login/screens/authentication.dart';
 import 'package:quizz_app_provider/login/screens/login.dart';
 import 'package:quizz_app_provider/models/user.dart';
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/authentication',
     routes: [
+      GoRoute(
+        path: '/authentication',
+        builder: (context, state) => const AuthenticationPage(),
+      ),
       GoRoute(
         path: '/login',
         builder: (context, state) => const LoginPage(),

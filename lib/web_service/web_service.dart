@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:quizz_app_provider/app.dart';
 import 'package:quizz_app_provider/login/authentication_status.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WebService {
   static const String _baseUrl = 'http://10.0.0.25:80';
@@ -24,14 +25,12 @@ mixin ConnectUser {
           'password': password,
         }),
       );
-      print("TEST response status code : ${response.statusCode}");
+      print("response status code : ${response.statusCode}");
 
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
         user = user.copyWith(pseudo: data["user"]['pseudo']);
 
-        print("TEST response body : ${response.body}");
-        print("TEST user pseudo : ${user.pseudo}");
         return AuthenticationStatus.authenticated;
       } else {
         return AuthenticationStatus.failed;
@@ -61,6 +60,11 @@ mixin CreateUser {
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
         user = user.copyWith(pseudo: data["user"]['pseudo']);
+
+        SharedPreferences.getInstance().then((value) {
+          value.setString('email', email);
+          value.setString('password', password);
+        });
         return AuthenticationStatus.authenticated;
       }
       if (response.statusCode == 401) {
