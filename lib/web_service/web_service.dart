@@ -30,7 +30,10 @@ mixin ConnectUser {
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
         user = user.copyWith(pseudo: data["user"]['pseudo']);
-
+        SharedPreferences.getInstance().then((value) {
+          value.setString('email', email);
+          value.setString('password', password);
+        });
         return AuthenticationStatus.authenticated;
       } else {
         return AuthenticationStatus.failed;
@@ -57,6 +60,9 @@ mixin CreateUser {
           'pseudo': pseudo,
         }),
       );
+      print("response status code : ${response.statusCode}");
+      print("response status code : ${response.body}");
+
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
         user = user.copyWith(pseudo: data["user"]['pseudo']);
@@ -75,4 +81,38 @@ mixin CreateUser {
       return AuthenticationStatus.failed;
     }
   }
+}
+
+mixin DisconnectUser {
+  void disconnectUser() {
+    SharedPreferences.getInstance().then((value) {
+      value.remove('email');
+      value.remove('password');
+    });
+  }
+  // Future<AuthenticationStatus> disconnectUser() async {
+  //   const String path = '/api/auth/logout';
+  //   String url = WebService._baseUrl + path;
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse(url),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json',
+  //       },
+  //     );
+  //     print("response status code : ${response.statusCode}");
+
+  //     if (response.statusCode == 200) {
+  //       SharedPreferences.getInstance().then((value) {
+  //         value.remove('email');
+  //         value.remove('password');
+  //       });
+  //       return AuthenticationStatus.unauthenticated;
+  //     } else {
+  //       return AuthenticationStatus.failed;
+  //     }
+  //   } catch (e) {
+  //     return AuthenticationStatus.failed;
+  //   }
+  // }
 }

@@ -27,8 +27,7 @@ class AccountCreationPageContent extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 400),
+        child: SingleChildScrollView(
           child: ChangeNotifierProvider(
               create: (context) => LoginForm(),
               child: Builder(

@@ -24,6 +24,10 @@ class _AuthenticationPageState extends State<AuthenticationPage>
     SharedPreferences.getInstance().then((value) {
       String email = value.getString('email') ?? '';
       String password = value.getString('password') ?? '';
+      if (email.isEmpty || password.isEmpty) {
+        context.go('/login');
+        return;
+      }
       connectUser(email, password).then((value) {
         switch (value) {
           case AuthenticationStatus.authenticated:
@@ -63,7 +67,7 @@ class AuthenticationPageContent extends StatelessWidget {
                 ),
               ),
               CircularProgressIndicator(
-                color: ThemeConfig.secondaryColor,
+                color: ThemeConfig.primaryColor,
               )
             ],
           )),

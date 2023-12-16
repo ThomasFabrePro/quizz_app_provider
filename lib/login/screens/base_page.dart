@@ -26,7 +26,7 @@ class BasePage extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: CustomPaint(
-                  painter: RPSCustomPainter(),
+                  painter: CustomShapedContainer(),
                   size: const Size(
                       ThemeConfig.maxWidth, ThemeConfig.maxWidth * 2),
                 ),

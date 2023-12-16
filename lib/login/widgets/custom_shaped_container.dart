@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 
-class RPSCustomPainter extends CustomPainter {
+class CustomShapedContainer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Layer 1
