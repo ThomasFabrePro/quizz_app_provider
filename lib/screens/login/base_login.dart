@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/login/widgets/custom_shaped_containers/login_background.dart';
+import 'package:quizz_app_provider/widgets/login/login_background.dart';
 
-class BasePage extends StatelessWidget {
+class BaseLoginPage extends StatelessWidget {
   final String appBarText;
   final Widget child;
 
-  const BasePage({super.key, required this.appBarText, required this.child});
+  const BaseLoginPage(
+      {super.key, required this.appBarText, required this.child});
 
   @override
   Widget build(BuildContext context) {

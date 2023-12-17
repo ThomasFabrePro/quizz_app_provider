@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/home_page.dart';
-import 'package:quizz_app_provider/login/screens/account_creation.dart';
-import 'package:quizz_app_provider/login/screens/authentication.dart';
-import 'package:quizz_app_provider/login/screens/login.dart';
-import 'package:quizz_app_provider/models/user.dart';
-import 'package:quizz_app_provider/quizzes/screens/quizz_selection.dart';
+import 'package:quizz_app_provider/screens/home_page.dart';
+import 'package:quizz_app_provider/screens/quizz/quizz_selection.dart';
+import 'package:quizz_app_provider/screens/login/account_creation.dart';
+import 'package:quizz_app_provider/screens/login/authentication.dart';
+import 'package:quizz_app_provider/screens/login/login.dart';
 
 CustomTransitionPage transitionPage(GoRouterState state, Widget child) {
   return CustomTransitionPage(
@@ -73,8 +72,6 @@ GoRouter router() {
     ],
   );
 }
-
-User user = const User(pseudo: '');
 
 class App extends StatelessWidget {
   const App({super.key});

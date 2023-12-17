@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/login/models/login_form.dart';
+import 'package:quizz_app_provider/models/login/login_form.dart';
 
-class PseudoInput extends StatelessWidget {
-  const PseudoInput({super.key});
+class PasswordInput extends StatelessWidget {
+  const PasswordInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,13 @@ class PseudoInput extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Consumer<LoginForm>(builder: (context, loginForm, child) {
           return TextField(
-            key: const Key('loginForm_pseudoInput_textField'),
-            onChanged: (pseudo) => loginForm.newPseudo = pseudo,
+            key: const Key('loginForm_passwordInput_textField'),
+            onChanged: (password) => loginForm.newPassword = password,
             style: const TextStyle(color: Colors.white),
             decoration: const InputDecoration(
               border: InputBorder.none,
               labelStyle: TextStyle(color: Colors.white),
-              labelText: 'Pseudo',
+              labelText: 'Mdp',
             ),
           );
         }),

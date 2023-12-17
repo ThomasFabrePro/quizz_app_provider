@@ -1,8 +1,8 @@
 //import hhtp package
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:quizz_app_provider/app.dart';
-import 'package:quizz_app_provider/login/authentication_status.dart';
+import 'package:quizz_app_provider/common/authentication_status.dart';
+import 'package:quizz_app_provider/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WebService {
@@ -62,7 +62,7 @@ mixin CreateUser {
 
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
-        user = user.copyWith(pseudo: data["user"]['pseudo']);
+        user = user.fromJson(data["user"]);
 
         SharedPreferences.getInstance().then((value) {
           value.setString('email', email);

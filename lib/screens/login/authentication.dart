@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/login/authentication_status.dart';
-import 'package:quizz_app_provider/login/screens/base_page.dart';
+import 'package:quizz_app_provider/common/authentication_status.dart';
+import 'package:quizz_app_provider/screens/login/base_login.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -44,7 +44,8 @@ class _AuthenticationPageState extends State<AuthenticationPage>
 
   @override
   Widget build(BuildContext context) {
-    return const BasePage(appBarText: '', child: AuthenticationPageContent());
+    return const BaseLoginPage(
+        appBarText: '', child: AuthenticationPageContent());
   }
 }
 

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/login/models/login_form.dart';
-import 'package:quizz_app_provider/login/models/pseudo.dart';
-import 'package:quizz_app_provider/login/screens/base_page.dart';
-import 'package:quizz_app_provider/login/widgets/account_creation_link.dart';
-import 'package:quizz_app_provider/login/widgets/email_input.dart';
-import 'package:quizz_app_provider/login/widgets/password_input.dart';
-import 'package:quizz_app_provider/login/widgets/submit_button.dart';
+import 'package:quizz_app_provider/screens/login/base_login.dart';
+import 'package:quizz_app_provider/widgets/login/account_creation_link.dart';
+import 'package:quizz_app_provider/widgets/login/email_input.dart';
+import 'package:quizz_app_provider/widgets/login/password_input.dart';
+import 'package:quizz_app_provider/widgets/login/submit_button.dart';
+
+import '../../models/login/login_models.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const BasePage(
+    return const BaseLoginPage(
       appBarText: '',
       child: LoginPageContent(),
     );

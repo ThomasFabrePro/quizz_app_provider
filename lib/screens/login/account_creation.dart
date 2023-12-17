@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/login/models/login_form.dart';
-import 'package:quizz_app_provider/login/screens/base_page.dart';
-import 'package:quizz_app_provider/login/widgets/create_account_button.dart';
-import 'package:quizz_app_provider/login/widgets/email_input.dart';
-import 'package:quizz_app_provider/login/widgets/password_input.dart';
-import 'package:quizz_app_provider/login/widgets/pseudo_input.dart';
+import 'package:quizz_app_provider/models/login/login_form.dart';
+import 'package:quizz_app_provider/screens/login/base_login.dart';
+import 'package:quizz_app_provider/widgets/login/create_account_button.dart';
+import 'package:quizz_app_provider/widgets/login/email_input.dart';
+import 'package:quizz_app_provider/widgets/login/password_input.dart';
+import 'package:quizz_app_provider/widgets/login/pseudo_input.dart';
 
 class AccountCreationPage extends StatelessWidget {
   const AccountCreationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const BasePage(
+    return const BaseLoginPage(
       appBarText: 'Création de compte',
       child: AccountCreationPageContent(),
     );

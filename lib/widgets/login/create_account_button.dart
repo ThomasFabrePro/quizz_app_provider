@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/login/authentication_status.dart';
-import 'package:quizz_app_provider/login/models/login_form.dart';
+import 'package:quizz_app_provider/common/authentication_status.dart';
+import 'package:quizz_app_provider/models/login/login_form.dart';
 
 class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({super.key});
