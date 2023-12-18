@@ -10,6 +10,7 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   List<QuizzQuestion> quizzQuestions;
   bool isLoading = false;
   int currentQuestionIndex = 0;
+  List<bool?> answersTracker = [null, null, null, null];
   int correctAnswers = 0;
   int wrongAnswers = 0;
   bool isFinished = false;
@@ -53,8 +54,10 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
     QuizzQuestion question = quizzQuestions[currentQuestionIndex];
     question.selectedOptionIndex = index;
     if (question.correctOptionIndex == index) {
+      answersTracker[currentQuestionIndex] = true;
       correctAnswers++;
     } else {
+      answersTracker[currentQuestionIndex] = false;
       wrongAnswers++;
     }
     question.isAnswered = true;
