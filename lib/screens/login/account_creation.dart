@@ -43,6 +43,8 @@ class AccountCreationPageContent extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 80),
+                      EmailInput(),
+                      SizedBox(height: 80),
                       PasswordInput(),
                       SizedBox(height: 16),
                       PseudoInput(),
