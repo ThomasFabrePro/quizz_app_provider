@@ -51,18 +51,20 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   }
 
   void answerQuestion(int index) {
-    QuizzQuestion question = quizzQuestions[currentQuestionIndex];
-    question.selectedOptionIndex = index;
-    if (question.correctOptionIndex == index) {
-      answersTracker[currentQuestionIndex] = true;
-      correctAnswers++;
-    } else {
-      answersTracker[currentQuestionIndex] = false;
-      wrongAnswers++;
-    }
-    question.isAnswered = true;
+    // QuizzQuestion question = quizzQuestions[currentQuestionIndex];
+    if (!question.isAnswered) {
+      question.selectedOptionIndex = index;
+      if (question.correctOptionIndex == index) {
+        answersTracker[currentQuestionIndex] = true;
+        correctAnswers++;
+      } else {
+        answersTracker[currentQuestionIndex] = false;
+        wrongAnswers++;
+      }
+      question.isAnswered = true;
 
-    notifyListeners();
+      notifyListeners();
+    }
   }
 
   void nextQuestion() {

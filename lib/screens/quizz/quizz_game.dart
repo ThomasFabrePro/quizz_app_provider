@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 import 'package:quizz_app_provider/screens/base_page.dart';
 import 'package:quizz_app_provider/widgets/quizz/answers_grid.dart';
+import 'package:quizz_app_provider/widgets/quizz/linear_timer.dart';
 import 'package:quizz_app_provider/widgets/quizz/next_button.dart';
 import 'package:quizz_app_provider/widgets/quizz/question_card.dart';
 
@@ -28,13 +29,15 @@ class QuizzGameContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => quizz,
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          //TimingBar(),
-          QuestionCard(),
-          AnswersGrid(),
-          NextButton(),
+          LinearTimer(onTimerFinish: () {
+            quizz.answerQuestion(-1);
+          }),
+          const QuestionCard(),
+          const AnswersGrid(),
+          const NextButton(),
           // SizedBox(/*here for front end purpose*/)
         ],
       ),
