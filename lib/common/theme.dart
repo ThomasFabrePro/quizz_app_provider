@@ -25,11 +25,12 @@ final appTheme = ThemeData(
 
 class ThemeConfig {
   static const Color primaryColor = Color.fromARGB(255, 71, 253, 183);
-  static const Color secondaryColor = Color.fromARGB(166, 94, 15, 158);
+  static const Color secondaryColor = Color.fromARGB(255, 74, 10, 126);
+  // static const Color secondaryColor = Color.fromARGB(166, 94, 15, 158);
   static const Color tertiaryColor = Color.fromARGB(255, 30, 2, 94);
   static const Color complementaryTertiaryColor =
       Color.fromARGB(255, 58, 4, 184);
-  static const double maxWidth = 400;
+  static const double maxWidth = 800;
   static const double appBarFontSize = 24;
   static const TextStyle elevatedButtonTextStyle =
       TextStyle(fontSize: 24, color: tertiaryColor);

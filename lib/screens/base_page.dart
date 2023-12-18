@@ -1,5 +1,4 @@
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/widgets/default_background.dart';
 import 'package:flutter/material.dart';
 
 class BasePage extends StatelessWidget {
@@ -16,7 +15,7 @@ class BasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         title: Text(appBarText,
@@ -26,28 +25,21 @@ class BasePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: appBarActions,
       ),
-      body: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: ThemeConfig.maxWidth),
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                child: RepaintBoundary(
-                  child: CustomPaint(
-                    painter: DefaultBackground(),
-                    size: const Size(
-                        ThemeConfig.maxWidth, ThemeConfig.maxWidth * 2),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: child,
-              ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              ThemeConfig.tertiaryColor,
+              ThemeConfig.secondaryColor,
             ],
           ),
+        ),
+        child: Center(
+          child: Container(
+              constraints: const BoxConstraints(maxWidth: ThemeConfig.maxWidth),
+              child: child),
         ),
       ),
     );

@@ -38,13 +38,11 @@ class AccountCreationPageContent extends StatelessWidget {
                       Align(
                         alignment: Alignment.topCenter,
                         child: Image(
-                          image: AssetImage('assets/logo_small.png'),
+                          image: AssetImage('assets/logo_large.png'),
                           height: 200,
                         ),
                       ),
                       SizedBox(height: 80),
-                      EmailInput(),
-                      SizedBox(height: 16),
                       PasswordInput(),
                       SizedBox(height: 16),
                       PseudoInput(),

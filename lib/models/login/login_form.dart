@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
-import 'package:quizz_app_provider/web_service/auth_user.dart';
 import 'package:quizz_app_provider/web_service/connect_user.dart';
 import 'package:quizz_app_provider/web_service/create_user.dart';
 

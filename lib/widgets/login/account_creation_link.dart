@@ -11,8 +11,10 @@ class AccountCreationLink extends StatelessWidget {
       onTap: () => context.go('/login/account_creation'),
       child: const Text(
         'Créer un compte',
-        style:
-            TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+        style: TextStyle(
+            color: Colors.blue,
+            decoration: TextDecoration.underline,
+            fontSize: 16),
       ),
     );
   }
