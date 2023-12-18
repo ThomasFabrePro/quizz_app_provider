@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_category_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 
 class QuizzCategoryCard extends StatelessWidget {
-  final Quizz quizzCategory;
-  const QuizzCategoryCard({super.key, required this.quizzCategory});
+  final Quizz quizz;
+  const QuizzCategoryCard({super.key, required this.quizz});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => quizzCategory,
+      create: (context) => quizz,
       child: GestureDetector(
-        onTap: quizzCategory.isLoading
+        onTap: quizz.isLoading
             ? null
             : () {
-                quizzCategory.getQuizzQuestions().then((_) {
-                  if (quizzCategory.quizzQuestions.isNotEmpty) {
-                    context.go("/quizz_game", extra: quizzCategory);
+                quizz.getQuizzQuestions().then((_) {
+                  if (quizz.quizzQuestions.isNotEmpty) {
+                    context.go("/quizz_game", extra: quizz);
                   } else {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
@@ -43,7 +43,7 @@ class QuizzCategoryCard extends StatelessWidget {
                 color: ThemeConfig.primaryColor,
                 width: 1,
               ))),
-          child: quizzCategory.isLoading
+          child: quizz.isLoading
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
@@ -57,7 +57,7 @@ class QuizzCategoryCard extends StatelessWidget {
                     Positioned(
                       left: 8,
                       child: Text(
-                        quizzCategory.name,
+                        quizz.name,
                         style: const TextStyle(
                           color: ThemeConfig.primaryColor,
                           fontSize: 24,

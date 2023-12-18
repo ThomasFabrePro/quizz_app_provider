@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:quizz_app_provider/models/quizz/quizz_category_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_category_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 import 'package:quizz_app_provider/screens/base_page.dart';
 import 'package:quizz_app_provider/widgets/quizz/quizz_category_card.dart';
 
@@ -31,7 +31,7 @@ class QuizzSelectionContent extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
-              child: QuizzCategoryCard(quizzCategory: quizzList[index]),
+              child: QuizzCategoryCard(quizz: quizzList[index]),
             );
           },
         ),

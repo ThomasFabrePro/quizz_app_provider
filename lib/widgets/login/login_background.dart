@@ -6,7 +6,7 @@ class LoginBackground extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // Layer 1
 
-    Paint paint_fill_0 = Paint()
+    Paint paintFill0 = Paint()
       ..color = ThemeConfig.secondaryColor
       ..style = PaintingStyle.fill
       ..strokeWidth = size.width * 0.00
@@ -29,18 +29,18 @@ class LoginBackground extends CustomPainter {
     path_0.quadraticBezierTo(size.width * 0.1900625, size.height * 0.2682000,
         size.width * 0.0012500, size.height * 0.3350000);
 
-    canvas.drawPath(path_0, paint_fill_0);
+    canvas.drawPath(path_0, paintFill0);
 
     // Layer 1
 
-    Paint paint_stroke_0 = Paint()
+    Paint paintStroke0 = Paint()
       ..color = Colors.transparent
       ..style = PaintingStyle.stroke
       ..strokeWidth = size.width * 0.00
       ..strokeCap = StrokeCap.butt
       ..strokeJoin = StrokeJoin.miter;
 
-    canvas.drawPath(path_0, paint_stroke_0);
+    canvas.drawPath(path_0, paintStroke0);
   }
 
   @override

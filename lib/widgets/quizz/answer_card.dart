@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_game_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 
 class AnswerCard extends StatelessWidget {
   final int index;
@@ -9,13 +9,11 @@ class AnswerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<QuizzGame>(builder: (context, quizzGame, child) {
-      List<Color> optionColors = quizzGame
-          .quizz.quizzQuestions[quizzGame.currentQuestionIndex]
-          .getOptionColors(index);
+    return Consumer<Quizz>(builder: (context, quizz, child) {
+      List<Color> optionColors = quizz.question.getOptionColors(index);
       return GestureDetector(
         onTap: () {
-          quizzGame.answerQuestion(index);
+          quizz.answerQuestion(index);
         },
         child: Container(
           margin: const EdgeInsets.all(8),

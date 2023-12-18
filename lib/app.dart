@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_category_model.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_question_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 import 'package:quizz_app_provider/screens/home_page.dart';
 import 'package:quizz_app_provider/screens/quizz/quizz_game.dart';
 import 'package:quizz_app_provider/screens/quizz/quizz_selection.dart';
@@ -68,6 +67,13 @@ GoRouter router() {
           return transitionPage(state, QuizzGamePage(quizz: quizz));
         },
       ),
+      // GoRoute(
+      //   path: '/result',
+      //   pageBuilder: (context, state) {
+      //     QuizzGame quizz = state.extra as QuizzGame;
+      //     return transitionPage(state, QuizzGamePage(quizz: quizz));
+      //   },
+      // ),
     ],
   );
 }

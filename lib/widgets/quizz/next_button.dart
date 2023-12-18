@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_game_model.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 
 class NextButton extends StatelessWidget {
   const NextButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<QuizzGame>(builder: (context, quizzGame, child) {
+    return Consumer<Quizz>(builder: (context, quizz, child) {
       return Visibility(
-        visible: quizzGame
-            .quizz.quizzQuestions[quizzGame.currentQuestionIndex].isAnswered,
+        visible: quizz.actualQuestionIsAnswered,
         child: ElevatedButton(
           onPressed: () {
-            quizzGame.nextQuestion();
+            quizz.nextQuestion();
+            if (quizz.isFinished) {
+              // context.go('/result', extra: quizzGame);
+            }
           },
           child: const Text(
             "NEXT",
