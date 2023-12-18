@@ -10,7 +10,6 @@ class QuizzCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("build ${quizzCategory.name}");
     return ChangeNotifierProvider(
       create: (context) => quizzCategory,
       child: GestureDetector(

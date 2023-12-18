@@ -10,7 +10,6 @@ class AnswerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<QuizzGame>(builder: (context, quizzGame, child) {
-      print("TEST build answer card $answerText");
       List<Color> optionColors = quizzGame
           .quizz.quizzQuestions[quizzGame.currentQuestionIndex]
           .getOptionColors(index);

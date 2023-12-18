@@ -15,10 +15,8 @@ class QuizzGame extends ChangeNotifier {
     QuizzQuestion question = quizz.quizzQuestions[currentQuestionIndex];
     question.selectedOptionIndex = index;
     if (question.correctOptionIndex == index) {
-      print("correct answer");
       correctAnswers++;
     } else {
-      print("wrong answer");
       wrongAnswers++;
     }
     question.isAnswered = true;
