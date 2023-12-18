@@ -16,7 +16,7 @@ final appTheme = ThemeData(
     // ),
     bodyMedium: TextStyle(
       fontFamily: 'Corben',
-      fontWeight: FontWeight.w700,
+      // fontWeight: FontWeight.w700,
       fontSize: 24,
       color: Colors.white,
     ),

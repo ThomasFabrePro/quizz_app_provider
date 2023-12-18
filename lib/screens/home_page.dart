@@ -48,10 +48,8 @@ class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
         ElevatedButton(
             onPressed: () {
               retrieveQuizzCategories().then((value) {
-                print("TEST length des quizz categories : ${value.length}");
                 if (value.isNotEmpty) {
-                  QuizzSelectionPage.quizzCategoryList = value;
-                  context.go('/home/quizz_selection');
+                  context.go('/home/quizz_selection', extra: value);
                 } else {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
@@ -62,7 +60,6 @@ class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
                     );
                 }
               });
-              context.go('/home/quizz_selection');
             },
             child: const Text(
               'Jouer !',

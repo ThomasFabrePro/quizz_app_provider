@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:quizz_app_provider/models/quizz/quizz_category.dart';
+import 'package:quizz_app_provider/models/quizz/quizz_category_model.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 
 mixin RetrieveQuizzCategories {
-  Future<List<QuizzCategory>> retrieveQuizzCategories() async {
+  Future<List<Quizz>> retrieveQuizzCategories() async {
     const String path = '/api/quizzes/categories';
     String url = WebService.baseUrl + path;
     try {
@@ -14,14 +14,13 @@ mixin RetrieveQuizzCategories {
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
-        // body: jsonEncode(<String, String>{}),
       );
 
       if (response.statusCode == 200) {
         dynamic categories = jsonDecode(response.body);
-        List<QuizzCategory> quizzCategories = [];
+        List<Quizz> quizzCategories = [];
         for (var category in categories["quizzCategories"]) {
-          quizzCategories.add(QuizzCategory.fromJson(category));
+          quizzCategories.add(Quizz.fromJson(category));
         }
         return quizzCategories;
       } else {
