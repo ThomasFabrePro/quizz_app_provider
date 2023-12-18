@@ -27,14 +27,17 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
     );
   }
 
-  get options => quizzQuestions[currentQuestionIndex].options;
+  List<String> get options => quizzQuestions[currentQuestionIndex].options;
 
-  get actualQuestionIsAnswered =>
+  bool get actualQuestionIsAnswered =>
       quizzQuestions[currentQuestionIndex].isAnswered;
 
-  get actualQuestionText => quizzQuestions[currentQuestionIndex].question;
+  String get actualQuestionText =>
+      quizzQuestions[currentQuestionIndex].question;
 
-  get question => quizzQuestions[currentQuestionIndex];
+  QuizzQuestion get question => quizzQuestions[currentQuestionIndex];
+
+  String get score => "$correctAnswers / ${quizzQuestions.length}";
 
   Future<void> getQuizzQuestions() async {
     isLoading = true;

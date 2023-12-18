@@ -3,11 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
 import 'package:quizz_app_provider/screens/home_page.dart';
-import 'package:quizz_app_provider/screens/quizz/quizz_game.dart';
-import 'package:quizz_app_provider/screens/quizz/quizz_selection.dart';
-import 'package:quizz_app_provider/screens/login/account_creation.dart';
-import 'package:quizz_app_provider/screens/login/authentication.dart';
-import 'package:quizz_app_provider/screens/login/login.dart';
+import 'package:quizz_app_provider/screens/screens.dart';
 
 CustomTransitionPage transitionPage(GoRouterState state, Widget child) {
   return CustomTransitionPage(
@@ -67,13 +63,13 @@ GoRouter router() {
           return transitionPage(state, QuizzGamePage(quizz: quizz));
         },
       ),
-      // GoRoute(
-      //   path: '/result',
-      //   pageBuilder: (context, state) {
-      //     QuizzGame quizz = state.extra as QuizzGame;
-      //     return transitionPage(state, QuizzGamePage(quizz: quizz));
-      //   },
-      // ),
+      GoRoute(
+        path: '/result',
+        pageBuilder: (context, state) {
+          Quizz quizz = state.extra as Quizz;
+          return transitionPage(state, QuizzResultPage(quizz: quizz));
+        },
+      ),
     ],
   );
 }
