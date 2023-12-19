@@ -40,8 +40,9 @@ class QuizzCategoryCard extends StatelessWidget {
                   bottomLeft: Radius.circular(90),
                   bottomRight: Radius.circular(90)),
               border: Border.fromBorderSide(BorderSide(
-                color: ThemeConfig.primaryColor,
-                width: 1,
+                color: Colors.white,
+                // color: ThemeConfig.primaryColor,
+                width: 0.5,
               ))),
           child: quizz.isLoading
               ? const Center(
@@ -53,9 +54,8 @@ class QuizzCategoryCard extends StatelessWidget {
                     //   image: AssetImage('assets/quizz_category.png'),
                     //   fit: BoxFit.cover,
                     // ),
-
-                    Positioned(
-                      left: 8,
+                    Center(
+                      // left: 8,
                       child: Text(
                         quizz.name,
                         style: const TextStyle(
@@ -65,6 +65,17 @@ class QuizzCategoryCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // Positioned(
+                    //   left: 8,
+                    //   child: Text(
+                    //     quizz.name,
+                    //     style: const TextStyle(
+                    //       color: ThemeConfig.primaryColor,
+                    //       fontSize: 24,
+                    //       // fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
         ),

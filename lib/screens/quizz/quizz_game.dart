@@ -29,17 +29,22 @@ class QuizzGameContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => quizz,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          LinearTimer(onTimerFinish: () {
-            quizz.answerQuestion(-1);
-          }),
-          const QuestionCard(),
-          const AnswersGrid(),
-          const NextButton(),
-          // SizedBox(/*here for front end purpose*/)
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            LinearTimer(onTimerFinish: () {
+              quizz.answerQuestion(-1);
+            }),
+            const SizedBox(height: 32),
+            const QuestionCard(),
+            const SizedBox(height: 32),
+            const AnswersGrid(),
+            const SizedBox(height: 16),
+            const NextButton(),
+            // SizedBox(/*here for front end purpose*/)
+          ],
+        ),
       ),
     );
   }

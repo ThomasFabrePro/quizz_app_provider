@@ -14,10 +14,10 @@ class QuizzQuestion {
   });
 
   factory QuizzQuestion.fromJson(Map<String, dynamic> json) {
-    Map<String, dynamic> jsonOptions = json['options'];
+    // Map<String, dynamic> jsonOptions = json['options'];
     List<String> options = [];
-    for (var option in jsonOptions.entries) {
-      options.add(option.value.toString());
+    for (var option in json['options']) {
+      options.add(option.toString());
     }
     return QuizzQuestion(
       question: json['question'],

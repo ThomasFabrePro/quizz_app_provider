@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
@@ -29,9 +30,12 @@ class AnswerCard extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Text(
+            child: AutoSizeText(
               answerText,
-              style: const TextStyle(color: Colors.white, fontSize: 20),
+              textAlign: TextAlign.center,
+              maxFontSize: 20,
+              maxLines: 3,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),

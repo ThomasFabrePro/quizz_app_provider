@@ -22,6 +22,7 @@ class _LinearTimerState extends State<LinearTimer> {
   late int secondsRemaining;
   late double _barWidth;
   int durationSeconds = 1;
+  Timer? timer;
 
   @override
   void initState() {
@@ -31,8 +32,15 @@ class _LinearTimerState extends State<LinearTimer> {
     startTimer();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer?.cancel();
+  }
+
   void startTimer() {
-    Timer.periodic(Duration(seconds: durationSeconds), (timer) {
+    timer = Timer.periodic(Duration(seconds: durationSeconds), (timer) {
       setState(() {
         if (secondsRemaining > 0) {
           secondsRemaining -= durationSeconds;
@@ -91,7 +99,7 @@ class _LinearTimerState extends State<LinearTimer> {
                         child: Text(
                           secondsRemaining <= 0
                               ? "Terminé"
-                              : ("${(secondsRemaining).toStringAsFixed(0)}s restant"),
+                              : ("${(secondsRemaining).toStringAsFixed(0)}s restantes"),
                           style: TextStyle(
                             color: secondsRemaining <= 0
                                 ? Colors.white

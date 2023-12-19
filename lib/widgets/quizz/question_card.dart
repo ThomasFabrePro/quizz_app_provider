@@ -33,6 +33,7 @@ class QuestionCard extends StatelessWidget {
                   AnswerTracker(isProperlyAnswered: quizz.answersTracker[3]),
                 ],
               ),
+              const SizedBox(height: 16),
               Text(quizz.actualQuestionText),
             ],
           ),

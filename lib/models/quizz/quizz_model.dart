@@ -6,7 +6,8 @@ import 'package:quizz_app_provider/web_service/retrieve_quizz_questions.dart';
 
 class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   final String name;
-  final String description;
+  final String url;
+  // final String description;
   List<QuizzQuestion> quizzQuestions;
   bool isLoading = false;
   int currentQuestionIndex = 0;
@@ -17,14 +18,15 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
 
   Quizz({
     required this.name,
-    required this.description,
+    required this.url,
     this.quizzQuestions = const <QuizzQuestion>[],
   });
 
   factory Quizz.fromJson(Map<String, dynamic> json) {
     return Quizz(
       name: json['name'],
-      description: json['description'],
+      url: json['url'],
+      // description: json['description'],
     );
   }
 
@@ -43,7 +45,7 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   Future<void> getQuizzQuestions() async {
     isLoading = true;
     notifyListeners();
-    quizzQuestions = await retrieveQuizzQuestions(name);
+    quizzQuestions = await retrieveQuizzQuestions(url);
     if (quizzQuestions.isNotEmpty) {
       isLoading = false;
       notifyListeners();

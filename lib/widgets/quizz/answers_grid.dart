@@ -8,17 +8,20 @@ class AnswersGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Quizz>(builder: (context, quizz, child) {
-      List<String> options = quizz.options;
-      return GridView.builder(
-        shrinkWrap: true,
-        itemCount: 4,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 1.75),
-        itemBuilder: (context, index) {
-          return AnswerCard(index: index, answerText: options[index]);
-        },
-      );
-    });
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 500),
+      child: Consumer<Quizz>(builder: (context, quizz, child) {
+        List<String> options = quizz.options;
+        return GridView.builder(
+          shrinkWrap: true,
+          itemCount: 4,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1, childAspectRatio: 4),
+          itemBuilder: (context, index) {
+            return AnswerCard(index: index, answerText: options[index]);
+          },
+        );
+      }),
+    );
   }
 }
