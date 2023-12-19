@@ -31,7 +31,7 @@ class QuizzQuestion {
       if (index == correctOptionIndex) {
         return const [Colors.greenAccent, Colors.green];
       } else if (index == selectedOptionIndex) {
-        return const [Colors.redAccent, Colors.red];
+        return const [Color.fromARGB(255, 255, 93, 81), Colors.redAccent];
       }
       return const [
         Color.fromRGBO(255, 255, 255, 0.25),

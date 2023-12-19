@@ -15,7 +15,7 @@ class LinearTimer extends StatefulWidget {
       required this.onTimerFinish});
 
   @override
-  _LinearTimerState createState() => _LinearTimerState();
+  State<LinearTimer> createState() => _LinearTimerState();
 }
 
 class _LinearTimerState extends State<LinearTimer> {
@@ -34,7 +34,6 @@ class _LinearTimerState extends State<LinearTimer> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     timer?.cancel();
   }
@@ -56,7 +55,6 @@ class _LinearTimerState extends State<LinearTimer> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Quizz>(builder: (context, quizz, child) {
-      print("isAnswered: ${quizz.question.isAnswered}");
       if (quizz.question.isAnswered) {
         secondsRemaining = 30;
         _barWidth = 1.0;
