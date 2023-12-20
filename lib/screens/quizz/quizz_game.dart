@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
-import 'package:quizz_app_provider/screens/base_page.dart';
+import 'package:quizz_app_provider/screens/base/base_page.dart';
 import 'package:quizz_app_provider/widgets/quizz/answers_grid.dart';
 import 'package:quizz_app_provider/widgets/quizz/linear_timer.dart';
 import 'package:quizz_app_provider/widgets/quizz/next_button.dart';

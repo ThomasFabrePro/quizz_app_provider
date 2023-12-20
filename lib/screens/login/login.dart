@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/screens/login/base_login.dart';
+import 'package:quizz_app_provider/screens/base/base_login.dart';
 import 'package:quizz_app_provider/widgets/login/account_creation_link.dart';
 import 'package:quizz_app_provider/widgets/login/email_input.dart';
 import 'package:quizz_app_provider/widgets/login/password_input.dart';
