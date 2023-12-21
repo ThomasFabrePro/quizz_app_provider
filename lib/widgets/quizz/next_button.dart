@@ -14,10 +14,11 @@ class NextButton extends StatelessWidget {
         visible: quizz.actualQuestionIsAnswered,
         child: ElevatedButton(
           onPressed: () {
-            quizz.nextQuestion();
-            if (quizz.isFinished) {
-              context.go('/result', extra: quizz);
-            }
+            quizz.nextQuestion().then((_) {
+              if (quizz.isFinished) {
+                context.go('/result', extra: quizz);
+              }
+            });
           },
           child: const Text(
             "NEXT",

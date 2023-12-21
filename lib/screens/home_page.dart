@@ -5,6 +5,7 @@ import 'package:quizz_app_provider/models/user.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
 import 'package:quizz_app_provider/web_service/retrieve_quizz_categories.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
+import 'package:quizz_app_provider/widgets/stats/stats_division.dart';
 
 class HomePage extends StatelessWidget with DisconnectUser {
   const HomePage({super.key});
@@ -65,6 +66,7 @@ class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
               'Jouer !',
               style: ThemeConfig.elevatedButtonTextStyle,
             )),
+        StatsDivision(),
       ],
     );
   }

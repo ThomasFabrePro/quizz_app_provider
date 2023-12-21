@@ -35,6 +35,7 @@ mixin ConnectUser {
         return AuthenticationStatus.failed;
       }
     } catch (e) {
+      print("ERROR $e");
       return AuthenticationStatus.unauthenticated;
     }
   }

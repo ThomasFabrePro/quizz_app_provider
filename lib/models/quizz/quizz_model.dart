@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/models/quizz/quizz_question_model.dart';
+import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/retrieve_quizz_questions.dart';
+import 'package:quizz_app_provider/web_service/update_stats.dart';
 
-class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
+class Quizz extends ChangeNotifier with RetrieveQuizzQuestions, UpdateStats {
   final String name;
   final String url;
-  // final String description;
   List<QuizzQuestion> quizzQuestions;
   bool isLoading = false;
   int currentQuestionIndex = 0;
@@ -53,7 +54,6 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   }
 
   void answerQuestion(int index) {
-    // QuizzQuestion question = quizzQuestions[currentQuestionIndex];
     if (!question.isAnswered) {
       question.selectedOptionIndex = index;
       if (question.correctOptionIndex == index) {
@@ -69,11 +69,15 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
     }
   }
 
-  void nextQuestion() {
+  Future<void> nextQuestion() async {
     if (currentQuestionIndex < quizzQuestions.length - 1) {
       currentQuestionIndex++;
       notifyListeners();
     } else {
+      await updateStats(Stat(
+          quizzCategory: name,
+          rightAnswers: correctAnswers,
+          wrongAnswers: wrongAnswers));
       isFinished = true;
     }
   }

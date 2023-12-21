@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/authentication_status.dart';
 import 'package:quizz_app_provider/models/user.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
@@ -23,7 +24,6 @@ mixin CreateUser {
           'pseudo': pseudo,
         }),
       );
-
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
         user = user.fromJson(data["user"]);
@@ -39,6 +39,7 @@ mixin CreateUser {
       }
       return AuthenticationStatus.failed;
     } catch (e) {
+      debugPrint("ERROR ON CREATE USER $e");
       return AuthenticationStatus.failed;
     }
   }

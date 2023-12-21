@@ -8,15 +8,8 @@ final appTheme = ThemeData(
     ),
   ),
   textTheme: const TextTheme(
-    // displayLarge: TextStyle(
-    //   fontFamily: 'Corben',
-    //   fontWeight: FontWeight.w700,
-    //   fontSize: 24,
-    //   color: Colors.white,
-    // ),
     bodyMedium: TextStyle(
       fontFamily: 'Corben',
-      // fontWeight: FontWeight.w700,
       fontSize: 24,
       color: Colors.white,
     ),
@@ -34,4 +27,13 @@ class ThemeConfig {
   static const double appBarFontSize = 24;
   static const TextStyle elevatedButtonTextStyle =
       TextStyle(fontSize: 24, color: tertiaryColor);
+  static const List<Color> statBarColorList = [
+    Color.fromARGB(255, 252, 252, 0),
+    Color.fromARGB(255, 255, 123, 46),
+    Color.fromARGB(255, 248, 49, 35),
+    Color.fromARGB(255, 255, 81, 197),
+    Color.fromARGB(255, 0, 253, 241),
+    Color.fromARGB(255, 71, 253, 71),
+    Color.fromARGB(255, 255, 255, 255),
+  ];
 }
