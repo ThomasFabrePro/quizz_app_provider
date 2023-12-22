@@ -5,10 +5,12 @@ class BasePage extends StatelessWidget {
   final String appBarText;
   final List<Widget>? appBarActions;
   final Widget child;
+  final Widget? floatingActionButton;
   const BasePage({
     super.key,
     required this.appBarText,
     this.appBarActions,
+    this.floatingActionButton,
     required this.child,
   });
 
@@ -25,6 +27,7 @@ class BasePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: appBarActions,
       ),
+      floatingActionButton: floatingActionButton,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

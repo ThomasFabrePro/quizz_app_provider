@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
+import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 
 class NextButton extends StatelessWidget {
   const NextButton({super.key});

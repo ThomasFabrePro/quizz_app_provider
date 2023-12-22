@@ -1,37 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/user.dart';
+import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
 import 'package:quizz_app_provider/web_service/retrieve_quizz_categories.dart';
-import 'package:quizz_app_provider/web_service/web_service.dart';
+import 'package:quizz_app_provider/widgets/buttons/home_contact_button.dart';
+import 'package:quizz_app_provider/widgets/buttons/home_disconnect_button.dart';
 import 'package:quizz_app_provider/widgets/stats/stats_division.dart';
 
-class HomePage extends StatelessWidget with DisconnectUser {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BasePage(
       appBarText: 'Bienvenue ${user.pseudo} !',
-      appBarActions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: Container(
-              decoration: const BoxDecoration(
-                color: ThemeConfig.primaryColor,
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon:
-                    const Icon(Icons.logout, color: ThemeConfig.tertiaryColor),
-                onPressed: () {
-                  disconnectUser();
-                  context.go('/login');
-                },
-              )),
-        )
-      ],
+      appBarActions: const [HomeDisconnectButton()],
+      floatingActionButton: const HomeContactButton(),
       child: const HomePageContent(),
     );
   }

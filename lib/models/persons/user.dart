@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart' show Color;
 import 'package:quizz_app_provider/common/theme.dart';
+import 'package:quizz_app_provider/models/persons/contact.dart';
 import 'package:quizz_app_provider/models/stat.dart';
 
 User user = const User(id: '0', email: '', pseudo: '');
@@ -11,11 +12,13 @@ class User {
   final String email;
   final String pseudo;
   final List<Stat> stats;
+  final List<Contact> contacts;
   const User(
       {required this.id,
       required this.email,
       required this.pseudo,
-      this.stats = const <Stat>[]});
+      this.stats = const <Stat>[],
+      this.contacts = const <Contact>[]});
 
   User fromJson(dynamic json) {
     final String id = json["_id"];
@@ -40,7 +43,7 @@ class User {
             barColor: color));
       }
       statsFromJson
-          .sort((a, b) => a.prctRightAnswers.compareTo(b.prctRightAnswers));
+          .sort((a, b) => b.prctRightAnswers.compareTo(a.prctRightAnswers));
     }
 
     return User(id: id, email: email, pseudo: pseudo, stats: statsFromJson);

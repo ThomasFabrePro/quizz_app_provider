@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
+import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
 import 'package:quizz_app_provider/widgets/quizz/quizz_category_card.dart';
 

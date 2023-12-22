@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
+import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
+import 'package:quizz_app_provider/screens/contacts/contacts_page.dart';
 import 'package:quizz_app_provider/screens/home_page.dart';
 import 'package:quizz_app_provider/screens/screens.dart';
 
@@ -51,6 +52,12 @@ GoRouter router() {
                 final List<Quizz> quizzList = state.extra as List<Quizz>;
                 return transitionPage(
                     state, QuizzSelectionPage(quizzList: quizzList));
+              },
+            ),
+            GoRoute(
+              path: 'contacts',
+              pageBuilder: (context, state) {
+                return transitionPage(state, const ContactsPage());
               },
             ),
           ]),

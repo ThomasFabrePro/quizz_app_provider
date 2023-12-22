@@ -2,7 +2,7 @@ import 'dart:convert' show jsonDecode, jsonEncode;
 
 import 'package:flutter/foundation.dart';
 import 'package:quizz_app_provider/models/stat.dart';
-import 'package:quizz_app_provider/models/user.dart';
+import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 

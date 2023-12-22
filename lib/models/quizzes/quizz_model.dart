@@ -1,7 +1,7 @@
 // import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_question_model.dart';
+import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/retrieve_quizz_questions.dart';
 import 'package:quizz_app_provider/web_service/update_stats.dart';

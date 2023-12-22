@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/quizz/quizz_model.dart';
+import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/widgets/quizz/answer_tracker.dart';
 
 class QuestionCard extends StatelessWidget {

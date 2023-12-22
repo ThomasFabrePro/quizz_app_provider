@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/stat.dart';
-import 'package:quizz_app_provider/models/user.dart';
+import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/widgets/stats/stat_bar.dart';
 
 class StatsDivision extends StatelessWidget {
