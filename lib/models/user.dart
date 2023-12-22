@@ -34,8 +34,9 @@ class User {
             wrongAnswers: stat["wrong"],
             barColor: color));
       }
+      statsFromJson.sort((a, b) => a.totalAnswers.compareTo(b.totalAnswers));
     }
-    statsFromJson.sort((a, b) => a.totalAnswers.compareTo(b.totalAnswers));
+
     return User(email: email, pseudo: pseudo, stats: statsFromJson);
   }
 }

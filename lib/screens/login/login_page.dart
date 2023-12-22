@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizz_app_provider/models/login/login_form.dart';
-import 'package:quizz_app_provider/screens/base/base_login.dart';
-import 'package:quizz_app_provider/widgets/login/create_account_button.dart';
+import 'package:quizz_app_provider/screens/base/base_login_page.dart';
+import 'package:quizz_app_provider/widgets/login/account_creation_link.dart';
 import 'package:quizz_app_provider/widgets/login/email_input.dart';
 import 'package:quizz_app_provider/widgets/login/password_input.dart';
-import 'package:quizz_app_provider/widgets/login/pseudo_input.dart';
+import 'package:quizz_app_provider/widgets/login/submit_button.dart';
 
-class AccountCreationPage extends StatelessWidget {
-  const AccountCreationPage({super.key});
+import '../../models/login/login_models.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const BaseLoginPage(
-      appBarText: 'Création de compte',
-      child: AccountCreationPageContent(),
+      appBarText: '',
+      child: LoginPageContent(),
     );
   }
 }
 
-class AccountCreationPageContent extends StatelessWidget {
-  const AccountCreationPageContent({super.key});
+class LoginPageContent extends StatelessWidget {
+  const LoginPageContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class AccountCreationPageContent extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: SingleChildScrollView(
           child: ChangeNotifierProvider(
-              create: (context) => LoginForm(),
+              create: (context) => LoginForm(pseudo: const Pseudo.dirty('/')),
               child: Builder(
                 builder: (context) {
                   return const Column(
@@ -47,9 +48,11 @@ class AccountCreationPageContent extends StatelessWidget {
                       SizedBox(height: 16),
                       PasswordInput(),
                       SizedBox(height: 16),
-                      PseudoInput(),
+                      Align(
+                          alignment: Alignment.centerRight,
+                          child: AccountCreationLink()),
                       SizedBox(height: 40),
-                      CreateAccountButton()
+                      SubmitButton()
                     ],
                   );
                 },

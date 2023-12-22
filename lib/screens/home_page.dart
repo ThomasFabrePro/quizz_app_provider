@@ -42,31 +42,35 @@ class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
       children: [
-        ElevatedButton(
-            onPressed: () {
-              retrieveQuizzCategories().then((value) {
-                if (value.isNotEmpty) {
-                  context.go('/home/quizz_selection', extra: value);
-                } else {
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(
-                      const SnackBar(
-                          backgroundColor: Colors.red,
-                          content: Text('Aucun quizz disponible')),
-                    );
-                }
-              });
-            },
-            child: const Text(
-              'Jouer !',
-              style: ThemeConfig.elevatedButtonTextStyle,
-            )),
-        StatsDivision(),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  retrieveQuizzCategories().then((value) {
+                    if (value.isNotEmpty) {
+                      context.go('/home/quizz_selection', extra: value);
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text('Aucun quizz disponible')),
+                        );
+                    }
+                  });
+                },
+                child: const Text(
+                  'Jouer !',
+                  style: ThemeConfig.elevatedButtonTextStyle,
+                )),
+            const StatsDivision(),
+          ],
+        ),
       ],
     );
   }
