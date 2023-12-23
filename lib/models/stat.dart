@@ -15,6 +15,12 @@ class Stat {
     this.barColor = Colors.white,
   });
 
+  Stat.fromJson(dynamic json)
+      : categoryName = json["category"],
+        rightAnswers = json["right"],
+        wrongAnswers = json["wrong"],
+        barColor = Colors.white;
+
   get totalAnswers => rightAnswers + wrongAnswers;
 
   get prctRightAnswers => ((rightAnswers / totalAnswers) * 100).round();

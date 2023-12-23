@@ -46,12 +46,7 @@ class User extends ChangeNotifier {
         // Color color = colorList[colorIndex];
         // colorList.removeAt(colorIndex);
         // //?
-        stats.add(Stat(
-          categoryName: stat["category"],
-          rightAnswers: stat["right"],
-          wrongAnswers: stat["wrong"],
-          // barColor: color
-        ));
+        stats.add(Stat.fromJson(stat));
       }
       _sortStatList();
     }
