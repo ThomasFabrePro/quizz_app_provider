@@ -1,10 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart' show debugPrint;
-import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
-import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +10,7 @@ class QuizzRepository extends WebService {
   const QuizzRepository();
   Future<List<Quizz>> fetchQuizzCategories() async {
     const String path = '/api/quizzes/categories';
-    String url = WebService.baseUrl + path;
+    String url = baseUrl + path;
     try {
       final response = await http.get(
         Uri.parse(url),
@@ -40,7 +37,7 @@ class QuizzRepository extends WebService {
 
   Future<List<QuizzQuestion>> fetchQuizzQuestions(String category) async {
     final String path = '/api/quizzes/${category.toLowerCase()}';
-    String url = WebService.baseUrl + path;
+    String url = baseUrl + path;
     try {
       final response = await http.get(
         Uri.parse(url),

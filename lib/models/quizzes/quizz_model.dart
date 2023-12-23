@@ -1,7 +1,6 @@
 // import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/repositories/quizz_repository.dart';
@@ -46,7 +45,7 @@ class Quizz extends ChangeNotifier {
   Future<void> getQuizzQuestions() async {
     isLoading = true;
     notifyListeners();
-    quizzQuestions = await QuizzRepository().fetchQuizzQuestions(url);
+    quizzQuestions = await const QuizzRepository().fetchQuizzQuestions(url);
     if (quizzQuestions.isNotEmpty) {
       isLoading = false;
       notifyListeners();

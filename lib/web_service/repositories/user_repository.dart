@@ -31,7 +31,7 @@ class UserRepository extends WebService {
   Future<AuthenticationStatus> connectUser(
       String email, String password) async {
     const String path = '/api/auth/login';
-    String url = WebService.baseUrl + path;
+    String url = baseUrl + path;
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -60,7 +60,7 @@ class UserRepository extends WebService {
   Future<AuthenticationStatus> createUser(
       String email, String password, String pseudo) async {
     const String path = '/api/auth/register';
-    String url = WebService.baseUrl + path;
+    String url = baseUrl + path;
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -90,7 +90,7 @@ class UserRepository extends WebService {
 
   Future<void> updateStat(Stat quizzStat) async {
     const String path = '/api/users/update_specific_stat';
-    String url = WebService.baseUrl + path;
+    String url = baseUrl + path;
     try {
       final response = await http.post(
         Uri.parse(url),

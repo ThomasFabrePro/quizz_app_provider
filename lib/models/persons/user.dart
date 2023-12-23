@@ -25,30 +25,32 @@ class User extends ChangeNotifier {
     final String email = json["email"];
     final String pseudo = json["pseudo"];
     _setStatListFromJson(json["stats"]);
+    _setContactListFromJson(json["contacts"]);
     return User(
       id: id,
       email: email,
       pseudo: pseudo,
       stats: stats,
+      contacts: contacts,
     );
   }
 
   void _setStatListFromJson(dynamic statsFromJson) {
     stats = [];
     if (statsFromJson != null) {
-      // List<Color> colorList = [];
       for (var stat in statsFromJson) {
-        // //?Give a random color to each stat
-        // if (colorList.isEmpty) {
-        //   colorList = List.from(ThemeConfig.statBarColorList);
-        // }
-        // int colorIndex = Random().nextInt(colorList.length);
-        // Color color = colorList[colorIndex];
-        // colorList.removeAt(colorIndex);
-        // //?
         stats.add(Stat.fromJson(stat));
       }
       _sortStatList();
+    }
+  }
+
+  void _setContactListFromJson(dynamic contactsFromJson) {
+    contacts = [];
+    if (contactsFromJson != null) {
+      for (var contact in contactsFromJson) {
+        contacts.add(Contact.fromJson(contact));
+      }
     }
   }
 

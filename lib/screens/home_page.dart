@@ -42,11 +42,9 @@ class HomePageContent extends StatelessWidget {
                     } else {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          const SnackBar(
-                              backgroundColor: Colors.red,
-                              content: Text('Aucun quizz disponible')),
-                        );
+                        ..showSnackBar(const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text('Aucun quizz disponible')));
                     }
                   });
                 },

@@ -15,11 +15,13 @@ class Stat {
     this.barColor = Colors.white,
   });
 
-  Stat.fromJson(dynamic json)
-      : categoryName = json["category"],
-        rightAnswers = json["right"],
-        wrongAnswers = json["wrong"],
-        barColor = Colors.white;
+  factory Stat.fromJson(dynamic json) {
+    return Stat(
+        categoryName: json["category"],
+        rightAnswers: json["right"],
+        wrongAnswers: json["wrong"],
+        barColor: Colors.white);
+  }
 
   get totalAnswers => rightAnswers + wrongAnswers;
 

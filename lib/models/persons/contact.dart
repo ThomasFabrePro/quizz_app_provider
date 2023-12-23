@@ -3,7 +3,7 @@ class Contact {
   final String pseudo;
   const Contact({required this.id, required this.pseudo});
 
-  Contact fromJson(dynamic json) {
+  factory Contact.fromJson(dynamic json) {
     final String id = json["_id"];
     final String pseudo = json["pseudo"];
 
