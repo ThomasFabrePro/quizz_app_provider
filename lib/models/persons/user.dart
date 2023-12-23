@@ -1,14 +1,13 @@
-import 'dart:math';
+// import 'dart:math';
 
-import 'package:flutter/material.dart' show Color, ChangeNotifier;
-import 'package:quizz_app_provider/common/theme.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
+// import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/persons/contact.dart';
 import 'package:quizz_app_provider/models/stat.dart';
-import 'package:quizz_app_provider/web_service/update_stats.dart';
 
 User user = User(id: '0', email: '', pseudo: '');
 
-class User extends ChangeNotifier with UpdateStats {
+class User extends ChangeNotifier {
   final String id;
   final String email;
   final String pseudo;
@@ -25,7 +24,7 @@ class User extends ChangeNotifier with UpdateStats {
     final String id = json["_id"];
     final String email = json["email"];
     final String pseudo = json["pseudo"];
-    setStatList(json["stats"]);
+    _setStatListFromJson(json["stats"]);
     return User(
       id: id,
       email: email,
@@ -34,7 +33,7 @@ class User extends ChangeNotifier with UpdateStats {
     );
   }
 
-  void setStatList(dynamic statsFromJson) {
+  void _setStatListFromJson(dynamic statsFromJson) {
     stats = [];
     if (statsFromJson != null) {
       // List<Color> colorList = [];
@@ -48,13 +47,33 @@ class User extends ChangeNotifier with UpdateStats {
         // colorList.removeAt(colorIndex);
         // //?
         stats.add(Stat(
-          quizzCategory: stat["category"],
+          categoryName: stat["category"],
           rightAnswers: stat["right"],
           wrongAnswers: stat["wrong"],
           // barColor: color
         ));
       }
-      stats.sort((a, b) => b.prctRightAnswers.compareTo(a.prctRightAnswers));
+      _sortStatList();
     }
+  }
+
+  void updateStat(Stat quizzStat) {
+    bool statDoesExist =
+        stats.any((stat) => stat.categoryName == quizzStat.categoryName);
+    if (statDoesExist) {
+      Stat statToUpdate = stats
+          .firstWhere((stat) => stat.categoryName == quizzStat.categoryName);
+      statToUpdate
+        ..rightAnswers += quizzStat.rightAnswers
+        ..wrongAnswers += quizzStat.wrongAnswers;
+    } else {
+      stats.add(quizzStat);
+    }
+    _sortStatList();
+    notifyListeners();
+  }
+
+  void _sortStatList() {
+    stats.sort((a, b) => b.prctRightAnswers.compareTo(a.prctRightAnswers));
   }
 }

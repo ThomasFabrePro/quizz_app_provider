@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:quizz_app_provider/common/authentication_status.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
+import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,34 +11,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 ///Responsible for communicating with the API for our user
 class UserRepository extends WebService {
   Future<bool> authUser() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String email = prefs.getString('email') ?? '';
-    // String password = prefs.getString('password') ?? '';
-    // if (email.isEmpty || password.isEmpty) {
-    //   print(
-    //       "manque email ou password :: email : $email :: password : $password");
-    //   return false;
-    // }
-    // return connectUser(email, password).then((value) {
-    //   print("VALUE $value");
-    //   switch (value) {
-    //     case AuthenticationStatus.authenticated:
-    //       return true;
-    //     default:
-    //       return false;
-    //   }
-    // });
-
     return await SharedPreferences.getInstance().then((value) {
       String email = value.getString('email') ?? '';
       String password = value.getString('password') ?? '';
       if (email.isEmpty || password.isEmpty) {
-        print(
-            "manque email ou password :: email : $email :: password : $password");
         return false;
       }
       return connectUser(email, password).then((value) {
-        print("VALUE $value");
         switch (value) {
           case AuthenticationStatus.authenticated:
             return true;
@@ -46,8 +26,6 @@ class UserRepository extends WebService {
         }
       });
     });
-    print("RETURN FALSE");
-    // return false;
   }
 
   Future<AuthenticationStatus> connectUser(
@@ -104,10 +82,34 @@ class UserRepository extends WebService {
         return AuthenticationStatus.unauthenticated;
       }
       throw Error();
-      // return AuthenticationStatus.failed;
     } catch (e) {
       debugPrint("ERROR ON CREATE USER $e");
       return AuthenticationStatus.failed;
+    }
+  }
+
+  Future<void> updateStat(Stat quizzStat) async {
+    const String path = '/api/users/update_specific_stat';
+    String url = WebService.baseUrl + path;
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'id': user.id,
+          'category': quizzStat.categoryName,
+          'right': quizzStat.rightAnswers,
+          'wrong': quizzStat.wrongAnswers,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        user.updateStat(quizzStat);
+      }
+    } catch (e) {
+      debugPrint("ERROR $e");
     }
   }
 
@@ -120,7 +122,6 @@ class UserRepository extends WebService {
 
   void _updateUserObject(dynamic responseBody) {
     dynamic data = jsonDecode(responseBody);
-    print("DATA OK");
     user = user.fromJson(data["user"]);
   }
 }

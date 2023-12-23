@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
-import 'package:quizz_app_provider/web_service/retrieve_quizz_questions.dart';
+import 'package:quizz_app_provider/web_service/repositories/quizz_repository.dart';
+import 'package:quizz_app_provider/web_service/repositories/user_repository.dart';
 
-class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
+class Quizz extends ChangeNotifier {
   final String name;
   final String url;
   List<QuizzQuestion> quizzQuestions;
@@ -45,7 +46,7 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   Future<void> getQuizzQuestions() async {
     isLoading = true;
     notifyListeners();
-    quizzQuestions = await retrieveQuizzQuestions(url);
+    quizzQuestions = await QuizzRepository().fetchQuizzQuestions(url);
     if (quizzQuestions.isNotEmpty) {
       isLoading = false;
       notifyListeners();
@@ -73,8 +74,8 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
       currentQuestionIndex++;
       notifyListeners();
     } else {
-      await user.updateStats(Stat(
-          quizzCategory: name,
+      await UserRepository().updateStat(Stat(
+          categoryName: name,
           rightAnswers: correctAnswers,
           wrongAnswers: wrongAnswers));
       isFinished = true;

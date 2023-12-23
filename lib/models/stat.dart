@@ -4,21 +4,18 @@ import 'package:flutter/material.dart' show Color, Colors;
 // import 'package:quizz_app_provider/common/theme.dart';
 
 class Stat {
-  final String quizzCategory;
-  final int rightAnswers;
-  final int wrongAnswers;
+  final String categoryName;
+  int rightAnswers;
+  int wrongAnswers;
   final Color barColor;
-  const Stat({
-    required this.quizzCategory,
-    required this.rightAnswers,
-    required this.wrongAnswers,
+  Stat({
+    required this.categoryName,
+    this.rightAnswers = 0,
+    this.wrongAnswers = 0,
     this.barColor = Colors.white,
   });
 
   get totalAnswers => rightAnswers + wrongAnswers;
 
-  get prctRightAnswers => (rightAnswers / totalAnswers) * 100;
-
-  // get barColor => ThemeConfig
-  //     .statBarColorList[Random().nextInt(ThemeConfig.statBarColorList.length)];
+  get prctRightAnswers => ((rightAnswers / totalAnswers) * 100).round();
 }

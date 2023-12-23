@@ -17,7 +17,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   @override
   void initState() {
     UserRepository().authUser().then((value) {
-      print('authUser value: $value');
       if (value) {
         context.go('/home');
       } else {

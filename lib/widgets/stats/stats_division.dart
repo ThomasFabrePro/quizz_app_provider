@@ -50,7 +50,7 @@ class StatsDivision extends StatelessWidget {
                           children: [
                             FittedBox(
                               child: Text(
-                                  "${item.quizzCategory} : ${item.prctRightAnswers}%"),
+                                  "${item.categoryName} : ${item.prctRightAnswers}%"),
                             ),
                             StatBar(stat: item),
                           ]),

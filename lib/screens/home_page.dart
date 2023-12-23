@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
-import 'package:quizz_app_provider/web_service/retrieve_quizz_categories.dart';
+import 'package:quizz_app_provider/web_service/repositories/quizz_repository.dart';
 import 'package:quizz_app_provider/widgets/buttons/home_contact_button.dart';
 import 'package:quizz_app_provider/widgets/buttons/home_disconnect_button.dart';
 import 'package:quizz_app_provider/widgets/stats/stats_division.dart';
@@ -22,7 +22,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
+class HomePageContent extends StatelessWidget {
+  final QuizzRepository quizzRepository = const QuizzRepository();
   const HomePageContent({super.key});
 
   @override
@@ -35,7 +36,7 @@ class HomePageContent extends StatelessWidget with RetrieveQuizzCategories {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  retrieveQuizzCategories().then((value) {
+                  quizzRepository.fetchQuizzCategories().then((value) {
                     if (value.isNotEmpty) {
                       context.go('/home/quizz_selection', extra: value);
                     } else {
