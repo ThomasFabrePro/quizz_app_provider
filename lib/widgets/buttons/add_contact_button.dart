@@ -13,7 +13,7 @@ class AddContactButton extends StatelessWidget {
         // context.go('/home/contacts/add_contact');
       },
       child: const Icon(
-        Icons.add,
+        Icons.person_add_alt_rounded,
         color: ThemeConfig.secondaryColor,
       ),
     );

@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 mixin UpdateStats {
   Future<void> updateStats(Stat quizzStat) async {
-    const String path = '/api/users/update-stats';
+    const String path = '/api/users/update_stats';
     String url = WebService.baseUrl + path;
     try {
       final response = await http.post(
@@ -17,7 +17,7 @@ mixin UpdateStats {
           'Content-Type': 'application/json',
         },
         body: jsonEncode(<String, dynamic>{
-          'email': user.email,
+          'id': user.id,
           'category': quizzStat.quizzCategory,
           'right': quizzStat.rightAnswers,
           'wrong': quizzStat.wrongAnswers,
@@ -26,7 +26,7 @@ mixin UpdateStats {
 
       if (response.statusCode == 201) {
         dynamic data = jsonDecode(response.body);
-        user = user.fromJson(data["user"]);
+        user.setStatList(data["stats"]);
       }
     } catch (e) {
       debugPrint("ERROR $e");
