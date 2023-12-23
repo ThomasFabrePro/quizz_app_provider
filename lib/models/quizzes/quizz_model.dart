@@ -1,12 +1,12 @@
 // import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
 import 'package:quizz_app_provider/web_service/retrieve_quizz_questions.dart';
-import 'package:quizz_app_provider/web_service/update_stats.dart';
 
-class Quizz extends ChangeNotifier with RetrieveQuizzQuestions, UpdateStats {
+class Quizz extends ChangeNotifier with RetrieveQuizzQuestions {
   final String name;
   final String url;
   List<QuizzQuestion> quizzQuestions;
@@ -27,7 +27,6 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions, UpdateStats {
     return Quizz(
       name: json['name'],
       url: json['url'],
-      // description: json['description'],
     );
   }
 
@@ -74,7 +73,7 @@ class Quizz extends ChangeNotifier with RetrieveQuizzQuestions, UpdateStats {
       currentQuestionIndex++;
       notifyListeners();
     } else {
-      await updateStats(Stat(
+      await user.updateStats(Stat(
           quizzCategory: name,
           rightAnswers: correctAnswers,
           wrongAnswers: wrongAnswers));

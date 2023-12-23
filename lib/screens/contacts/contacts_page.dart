@@ -45,7 +45,7 @@ class ContactsPageContent extends StatelessWidget {
                         ));
                   },
                 )
-              : Center(
+              : const Center(
                   child: Text('Vous n\'avez pas encore de contacts'),
                 )),
     ]);

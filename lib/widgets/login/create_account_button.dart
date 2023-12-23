@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/common/authentication_status.dart';
 import 'package:quizz_app_provider/models/login/login_form.dart';
+import 'package:quizz_app_provider/web_service/repositories/user_repository.dart';
 
 class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({super.key});
@@ -19,7 +20,7 @@ class CreateAccountButton extends StatelessWidget {
         key: const Key('loginForm_continue_raisedButton'),
         onPressed: loginForm.isValid
             ? () async {
-                await loginForm
+                await UserRepository()
                     .createUser(loginForm.email.value, loginForm.password.value,
                         loginForm.pseudo.value)
                     .then((value) {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
-// import 'package:quizz_app_provider/common/authentication_status.dart';
+import 'package:quizz_app_provider/web_service/repositories/user_repository.dart';
 import 'package:quizz_app_provider/screens/base/base_login_page.dart';
-import 'package:quizz_app_provider/web_service/auth_user.dart';
-import 'package:quizz_app_provider/web_service/connect_user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationPage extends StatefulWidget {
   const AuthenticationPage({
@@ -15,13 +13,17 @@ class AuthenticationPage extends StatefulWidget {
   State<AuthenticationPage> createState() => _AuthenticationPageState();
 }
 
-class _AuthenticationPageState extends State<AuthenticationPage>
-    with ConnectUser, AuthUser {
-  late SharedPreferences sharedPreferences;
-
+class _AuthenticationPageState extends State<AuthenticationPage> {
   @override
   void initState() {
-    authUser(context);
+    UserRepository().authUser().then((value) {
+      print('authUser value: $value');
+      if (value) {
+        context.go('/home');
+      } else {
+        context.go('/login');
+      }
+    });
     super.initState();
   }
 
