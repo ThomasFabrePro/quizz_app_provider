@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/persons/contact.dart';
+import 'package:provider/provider.dart';
+import 'package:quizz_app_provider/common/theme.dart';
+import 'package:quizz_app_provider/models/persons/contact_model.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
+import 'package:quizz_app_provider/models/services/contact_list_service.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
+import 'package:quizz_app_provider/web_service/repositories/contact_repository.dart';
 import 'package:quizz_app_provider/widgets/buttons/add_contact_button.dart';
+import 'package:quizz_app_provider/widgets/contacts/contact_list.dart';
+import 'package:quizz_app_provider/widgets/contacts/contact_search_bar.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({super.key});
@@ -22,32 +28,23 @@ class ContactsPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return Column(children: [
-      SizedBox(
-          height: height * 0.8,
-          child: user.contacts.isNotEmpty
-              ? ListView.builder(
-                  itemCount: user.contacts.length,
-                  itemBuilder: (context, index) {
-                    Contact contact = user.contacts[index];
-                    return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: ListTile(
-                          title: Text(contact.pseudo),
-                          // subtitle: Text(contact.email),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              user.contacts.removeAt(index);
-                            },
-                          ),
-                        ));
-                  },
-                )
-              : const Center(
-                  child: Text('Vous n\'avez pas encore de contacts'),
-                )),
-    ]);
+    return ChangeNotifierProvider(
+      // create: (context) => user,
+      create: (context) =>
+          ContactListService(contactRepository: ContactRepository()),
+      child: const Column(children: [
+        ContactSearchBar(),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          child: Divider(
+            color: ThemeConfig.primaryColor,
+            thickness: 1,
+            indent: 32,
+            endIndent: 32,
+          ),
+        ),
+        Expanded(child: ContactListView()),
+      ]),
+    );
   }
 }

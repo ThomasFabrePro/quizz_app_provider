@@ -43,7 +43,6 @@ class UserRepository extends WebService {
           'password': password,
         }),
       );
-
       if (response.statusCode == 201) {
         _updateUserObject(response.body);
         _saveUserAuthenticationInformations(email, password);
@@ -73,15 +72,16 @@ class UserRepository extends WebService {
           'pseudo': pseudo,
         }),
       );
-      if (response.statusCode == 201) {
-        _updateUserObject(response.body);
-        _saveUserAuthenticationInformations(email, password);
-        return AuthenticationStatus.authenticated;
+      switch (response.statusCode) {
+        case 201:
+          _updateUserObject(response.body);
+          _saveUserAuthenticationInformations(email, password);
+          return AuthenticationStatus.authenticated;
+        case 401:
+          return AuthenticationStatus.unauthenticated;
+        default:
+          return AuthenticationStatus.failed;
       }
-      if (response.statusCode == 401) {
-        return AuthenticationStatus.unauthenticated;
-      }
-      throw Error();
     } catch (e) {
       debugPrint("ERROR ON CREATE USER $e");
       return AuthenticationStatus.failed;

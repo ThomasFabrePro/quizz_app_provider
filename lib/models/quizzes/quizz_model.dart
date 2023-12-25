@@ -71,7 +71,7 @@ class Quizz extends ChangeNotifier {
   Future<void> nextQuestion() async {
     if (currentQuestionIndex < quizzQuestions.length - 1) {
       currentQuestionIndex++;
-      notifyListeners();
+      // notifyListeners();
     } else {
       await UserRepository().updateStat(Stat(
           categoryName: name,
@@ -79,5 +79,6 @@ class Quizz extends ChangeNotifier {
           wrongAnswers: wrongAnswers));
       isFinished = true;
     }
+    notifyListeners();
   }
 }

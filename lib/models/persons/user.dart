@@ -1,13 +1,9 @@
-// import 'dart:math';
-
-import 'package:flutter/material.dart' show ChangeNotifier;
-// import 'package:quizz_app_provider/common/theme.dart';
-import 'package:quizz_app_provider/models/persons/contact.dart';
+import 'package:quizz_app_provider/models/persons/contact_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
 
 User user = User(id: '0', email: '', pseudo: '');
 
-class User extends ChangeNotifier {
+class User {
   final String id;
   final String email;
   final String pseudo;
@@ -32,6 +28,16 @@ class User extends ChangeNotifier {
       pseudo: pseudo,
       stats: stats,
       contacts: contacts,
+    );
+  }
+
+  User fromUser(User user) {
+    return User(
+      id: user.id,
+      email: user.email,
+      pseudo: user.pseudo,
+      stats: user.stats,
+      contacts: user.contacts,
     );
   }
 
@@ -67,7 +73,7 @@ class User extends ChangeNotifier {
       stats.add(quizzStat);
     }
     _sortStatList();
-    notifyListeners();
+    // notifyListeners();
   }
 
   void _sortStatList() {
