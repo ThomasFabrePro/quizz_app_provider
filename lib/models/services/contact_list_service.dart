@@ -4,6 +4,9 @@ import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/web_service/repositories/contact_repository.dart';
 
 class ContactListService extends ChangeNotifier {
+  //contact repository testé ici pour l'inversion de dépendance,
+  //Mais pas d'utilité finalement donc on pourrait le repasser à l'instanciation directe
+  //De la classe plutot que de passer par le constructeur
   ContactRepository contactRepository;
   Contact? contactFetchedFromSearchBar;
   ContactListService({required this.contactRepository});
@@ -33,7 +36,9 @@ class ContactListService extends ChangeNotifier {
     }
     contactFetchedFromSearchBar =
         await ContactRepository().getContactByPseudo(pseudo);
-
+    if (contactFetchedFromSearchBar == null) {
+      return 'Aucun utilisateur trouvé avec ce pseudo';
+    }
     notifyListeners();
     return '';
   }

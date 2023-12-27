@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/screens/contacts/contacts_page.dart';
+import 'package:quizz_app_provider/screens/contacts/pending_contact_invitations_page.dart';
 import 'package:quizz_app_provider/screens/home_page.dart';
 import 'package:quizz_app_provider/screens/screens.dart';
 
@@ -23,7 +24,6 @@ CustomTransitionPage transitionPage(GoRouterState state, Widget child) {
 
 GoRouter router() {
   return GoRouter(
-    // initialLocation: '/home',
     initialLocation: '/authentication',
     routes: [
       GoRoute(
@@ -55,11 +55,19 @@ GoRouter router() {
               },
             ),
             GoRoute(
-              path: 'contacts',
-              pageBuilder: (context, state) {
-                return transitionPage(state, const ContactsPage());
-              },
-            ),
+                path: 'contacts',
+                pageBuilder: (context, state) {
+                  return transitionPage(state, const ContactsPage());
+                },
+                routes: [
+                  GoRoute(
+                    path: 'pending_contact_invitations',
+                    pageBuilder: (context, state) {
+                      return transitionPage(
+                          state, const PendingContactInvitationsPage());
+                    },
+                  ),
+                ]),
           ]),
       GoRoute(
         path: '/quizz_game',

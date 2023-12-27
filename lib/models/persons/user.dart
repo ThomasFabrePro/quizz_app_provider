@@ -9,12 +9,14 @@ class User {
   final String pseudo;
   List<Stat> stats;
   List<Contact> contacts;
+  List<Contact> pendingContactInvitations = [];
   User(
       {required this.id,
       required this.email,
       required this.pseudo,
       this.stats = const <Stat>[],
-      this.contacts = const <Contact>[]});
+      this.contacts = const <Contact>[],
+      this.pendingContactInvitations = const <Contact>[]});
 
   User fromJson(dynamic json) {
     final String id = json["_id"];

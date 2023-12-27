@@ -10,13 +10,14 @@ class ContactCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromRGBO(255, 255, 255, 0.25),
-              Color.fromRGBO(255, 255, 255, 0.1),
-            ]),
+        // gradient: const LinearGradient(
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight,
+        //     colors: [
+        //       Color.fromRGBO(255, 255, 255, 0.25),
+        //       Color.fromRGBO(255, 255, 255, 0.1),
+        //     ]),
+        color: Colors.white70,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
           color: Colors.white30,
@@ -26,7 +27,7 @@ class ContactCard extends StatelessWidget {
       child: ListTile(
         title: Text(
           pseudo,
-          style: const TextStyle(color: Colors.white),
+          // style: const TextStyle(color: Colors.white),
         ),
         trailing: trailing,
       ),

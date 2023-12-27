@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/models/persons/contact_model.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/services/contact_list_service.dart';
+import 'package:quizz_app_provider/widgets/contacts/add_contact_card.dart';
 import 'package:quizz_app_provider/widgets/contacts/contact_card.dart';
 
 class ContactListView extends StatelessWidget {

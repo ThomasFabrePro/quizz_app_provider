@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/services/contact_list_service.dart';
-import 'package:quizz_app_provider/widgets/contacts/contact_card.dart';
+import 'package:quizz_app_provider/widgets/contacts/add_contact_card.dart';
 
 class ContactSearchBar extends StatefulWidget {
   const ContactSearchBar({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _ContactSearchBarState extends State<ContactSearchBar> {
                 style: const TextStyle(color: Colors.white),
                 cursorColor: ThemeConfig.primaryColor,
                 decoration: const InputDecoration(
-                  labelText: 'Chercher un pseudo',
+                  labelText: 'Ajouter un ami',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: Colors.white),
@@ -55,17 +55,11 @@ class _ContactSearchBarState extends State<ContactSearchBar> {
             ),
             Visibility(
               visible: service.contactFetchedFromSearchBar != null,
-              child: ContactCard(
+              child: AddContactCard(
                 pseudo: service.contactFetchedFromSearchBar?.pseudo ?? "",
-                trailing: IconButton(
-                  icon: const Icon(
-                    Icons.add,
-                    color: ThemeConfig.primaryColor,
-                  ),
-                  onPressed: () async {
-                    await service.addContact();
-                  },
-                ),
+                onPressed: () async {
+                  await service.addContact();
+                },
               ),
             ),
           ],
