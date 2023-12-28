@@ -29,6 +29,33 @@ class ContactRepository extends WebService {
     }
   }
 
+  Future<void> askContact(String contactId) async {
+    const String path = '/api/users/ask_contact';
+    String url = baseUrl + path;
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          "userId": user.id,
+          "contactId": contactId,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        debugPrint("CONTACT ASKED");
+      } else {
+        debugPrint(
+            "CONTACT NOT ASKED :: response statusCode ${response.statusCode}");
+        throw Error();
+      }
+    } catch (e) {
+      debugPrint("ERROR ON ASK CONTACT $e");
+    }
+  }
+
   Future<void> addContact(String contactId) async {
     const String path = '/api/users/add_contact';
     String url = baseUrl + path;
@@ -81,5 +108,38 @@ class ContactRepository extends WebService {
     } catch (e) {
       debugPrint("ERROR ON REMOVE CONTACT $e");
     }
+  }
+
+  Future<
+      (
+        List<Contact> contactsList,
+        List<Contact> pendingContactInvitationsList
+      )> fetchContactsDatas() async {
+    final String path = '/api/users/${user.id}/contacts';
+    String url = baseUrl + path;
+    List<Contact> contactsList = [];
+    List<Contact> pendingContactInvitationsList = [];
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+      if (response.statusCode == 201) {
+        dynamic data = jsonDecode(response.body);
+        for (var contact in data['contacts']) {
+          contactsList.add(Contact.fromJson(contact));
+        }
+        for (var contact in data['pendingContactInvitations']) {
+          pendingContactInvitationsList.add(Contact.fromJson(contact));
+        }
+      }
+      // return (contactsList, pendingContactInvitationsList);
+    } catch (e) {
+      debugPrint("ERROR ON GET CONTACT BY PSEUDO $e");
+      // return (contactsList, pendingContactInvitationsList);
+    }
+    return (contactsList, pendingContactInvitationsList);
   }
 }

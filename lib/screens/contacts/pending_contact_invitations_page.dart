@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app_provider/models/persons/contact_model.dart';
-import 'package:quizz_app_provider/models/persons/user.dart';
+import 'package:provider/provider.dart';
+import 'package:quizz_app_provider/models/services/contact_list_service.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
-import 'package:quizz_app_provider/widgets/contacts/add_contact_card.dart';
-import 'package:quizz_app_provider/widgets/contacts/contact_card.dart';
+import 'package:quizz_app_provider/web_service/repositories/contact_repository.dart';
+import 'package:quizz_app_provider/widgets/contacts/pending_contact_list_division.dart';
 
 class PendingContactInvitationsPage extends StatelessWidget {
   const PendingContactInvitationsPage({super.key});
@@ -21,30 +21,9 @@ class PendingContactInvitationsPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Expanded(
-          child: user.pendingContactInvitations.isNotEmpty
-              ? ListView.builder(
-                  itemCount: user.pendingContactInvitations.length,
-                  itemBuilder: (context, index) {
-                    Contact contact = user.pendingContactInvitations[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: AddContactCard(
-                        pseudo: contact.pseudo,
-                        onPressed: () async {
-                          // await service.removeContact(contact);
-                        },
-                      ),
-                    );
-                  },
-                )
-              : const Center(
-                  child: Text(
-                    'Aucune demande en attente',
-                    textAlign: TextAlign.center,
-                  ),
-                )),
-    );
+    return ChangeNotifierProvider(
+        create: (context) =>
+            ContactListService(contactRepository: ContactRepository()),
+        child: const PendingContactListDivision());
   }
 }

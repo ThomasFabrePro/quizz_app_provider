@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/services/contact_list_service.dart';
-import 'package:quizz_app_provider/widgets/contacts/add_contact_card.dart';
+import 'package:quizz_app_provider/widgets/contacts/cards/search_contact_card.dart';
 
 class ContactSearchBar extends StatefulWidget {
   const ContactSearchBar({Key? key}) : super(key: key);
@@ -55,10 +55,10 @@ class _ContactSearchBarState extends State<ContactSearchBar> {
             ),
             Visibility(
               visible: service.contactFetchedFromSearchBar != null,
-              child: AddContactCard(
+              child: SearchContactCard(
                 pseudo: service.contactFetchedFromSearchBar?.pseudo ?? "",
-                onPressed: () async {
-                  await service.addContact();
+                onPressedAdd: () async {
+                  await service.askContact();
                 },
               ),
             ),

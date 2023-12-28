@@ -1,7 +1,14 @@
 import 'package:quizz_app_provider/models/persons/contact_model.dart';
 import 'package:quizz_app_provider/models/stat.dart';
+import 'package:quizz_app_provider/web_service/repositories/contact_repository.dart';
 
-User user = User(id: '0', email: '', pseudo: '');
+User user = User(
+    id: '0',
+    email: '',
+    pseudo: '',
+    stats: <Stat>[],
+    contacts: <Contact>[],
+    pendingContactInvitations: <Contact>[]);
 
 class User {
   final String id;
@@ -9,27 +16,34 @@ class User {
   final String pseudo;
   List<Stat> stats;
   List<Contact> contacts;
-  List<Contact> pendingContactInvitations = [];
+  List<Contact> pendingContactInvitations;
+
   User(
       {required this.id,
       required this.email,
       required this.pseudo,
-      this.stats = const <Stat>[],
-      this.contacts = const <Contact>[],
-      this.pendingContactInvitations = const <Contact>[]});
+      required this.stats,
+      required this.contacts,
+      required this.pendingContactInvitations});
+
+  ContactRepository contactRepository = ContactRepository();
 
   User fromJson(dynamic json) {
     final String id = json["_id"];
     final String email = json["email"];
     final String pseudo = json["pseudo"];
-    _setStatListFromJson(json["stats"]);
-    _setContactListFromJson(json["contacts"]);
+    final List<Stat> stats = _setStatListFromJson(json["stats"]);
+    final List<Contact> contacts = _setContactListFromJson(json["contacts"]);
+    final List<Contact> pendingContactInvitations =
+        _setPendingContactInvitationsListFromJson(
+            json["pendingContactInvitations"]);
     return User(
       id: id,
       email: email,
       pseudo: pseudo,
       stats: stats,
       contacts: contacts,
+      pendingContactInvitations: pendingContactInvitations,
     );
   }
 
@@ -40,26 +54,40 @@ class User {
       pseudo: user.pseudo,
       stats: user.stats,
       contacts: user.contacts,
+      pendingContactInvitations: pendingContactInvitations,
     );
   }
 
-  void _setStatListFromJson(dynamic statsFromJson) {
-    stats = [];
+  List<Stat> _setStatListFromJson(dynamic statsFromJson) {
+    List<Stat> stats = <Stat>[];
     if (statsFromJson != null) {
       for (var stat in statsFromJson) {
         stats.add(Stat.fromJson(stat));
       }
       _sortStatList();
     }
+    return stats;
   }
 
-  void _setContactListFromJson(dynamic contactsFromJson) {
-    contacts = [];
+  List<Contact> _setContactListFromJson(dynamic contactsFromJson) {
+    List<Contact> contacts = <Contact>[];
     if (contactsFromJson != null) {
       for (var contact in contactsFromJson) {
         contacts.add(Contact.fromJson(contact));
       }
     }
+    return contacts;
+  }
+
+  List<Contact> _setPendingContactInvitationsListFromJson(
+      dynamic pendingContactInvitationsFromJson) {
+    List<Contact> pendingContactInvitations = <Contact>[];
+    if (pendingContactInvitationsFromJson != null) {
+      for (var contact in pendingContactInvitationsFromJson) {
+        pendingContactInvitations.add(Contact.fromJson(contact));
+      }
+    }
+    return pendingContactInvitations;
   }
 
   void updateStat(Stat quizzStat) {
@@ -75,10 +103,16 @@ class User {
       stats.add(quizzStat);
     }
     _sortStatList();
-    // notifyListeners();
   }
 
   void _sortStatList() {
     stats.sort((a, b) => b.prctRightAnswers.compareTo(a.prctRightAnswers));
+  }
+
+  Future<void> fetchContactsDatas() async {
+    (List<Contact>, List<Contact>) result =
+        await contactRepository.fetchContactsDatas();
+    contacts = result.$1;
+    pendingContactInvitations = result.$2;
   }
 }

@@ -3,11 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:quizz_app_provider/models/persons/contact_model.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/models/services/contact_list_service.dart';
-import 'package:quizz_app_provider/widgets/contacts/add_contact_card.dart';
-import 'package:quizz_app_provider/widgets/contacts/contact_card.dart';
+import 'package:quizz_app_provider/widgets/contacts/cards/contact_card.dart';
 
-class ContactListView extends StatelessWidget {
-  const ContactListView({super.key});
+class ContactListDivision extends StatelessWidget {
+  const ContactListDivision({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,8 @@ class ContactListView extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: ContactCard(
-                    pseudo: contact.pseudo,
+                    // pseudo: contact.pseudo,
+                    contact: contact,
                     trailing: IconButton(
                       icon:
                           const Icon(Icons.delete, color: Colors.red, size: 30),

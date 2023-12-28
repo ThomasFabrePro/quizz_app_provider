@@ -4,9 +4,8 @@ import 'package:quizz_app_provider/common/theme.dart';
 import 'package:quizz_app_provider/models/services/contact_list_service.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
 import 'package:quizz_app_provider/web_service/repositories/contact_repository.dart';
-import 'package:quizz_app_provider/widgets/buttons/add_contact_button.dart';
-import 'package:quizz_app_provider/widgets/buttons/pending_contact_invitation.dart';
-import 'package:quizz_app_provider/widgets/contacts/contact_list.dart';
+import 'package:quizz_app_provider/widgets/buttons/pending_contact_invitation_button.dart';
+import 'package:quizz_app_provider/widgets/contacts/contact_list_division.dart';
 import 'package:quizz_app_provider/widgets/contacts/contact_search_bar.dart';
 
 class ContactsPage extends StatelessWidget {
@@ -42,7 +41,7 @@ class ContactsPageContent extends StatelessWidget {
             endIndent: 32,
           ),
         ),
-        Expanded(child: ContactListView()),
+        Expanded(child: ContactListDivision()),
       ]),
     );
   }

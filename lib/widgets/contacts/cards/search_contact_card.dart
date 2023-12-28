@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/common/theme.dart';
 
-class AddContactCard extends StatelessWidget {
+class SearchContactCard extends StatelessWidget {
   final String pseudo;
-  final Function onPressed;
-  const AddContactCard(
-      {super.key, required this.pseudo, required this.onPressed});
+  final Function onPressedAdd;
+  const SearchContactCard({
+    super.key,
+    required this.pseudo,
+    required this.onPressedAdd,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,7 @@ class AddContactCard extends StatelessWidget {
           icon:
               const Icon(Icons.add, color: ThemeConfig.primaryColor, size: 30),
           onPressed: () async {
-            onPressed();
-            // await user.acceptContactInvitation(contact);
+            onPressedAdd();
           },
         ),
       ),
