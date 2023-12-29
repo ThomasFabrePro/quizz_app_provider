@@ -11,7 +11,7 @@ class HomeContactButton extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: ThemeConfig.primaryColor,
       onPressed: () {
-        user.fetchContactsDatas().then((value) {
+        user.fetchAllContactsLists().then((value) {
           context.go('/home/contacts');
         });
       },

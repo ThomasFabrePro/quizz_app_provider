@@ -5,6 +5,7 @@ import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/screens/contacts/contacts_page.dart';
 import 'package:quizz_app_provider/screens/contacts/pending_contact_invitations_page.dart';
 import 'package:quizz_app_provider/screens/home_page.dart';
+import 'package:quizz_app_provider/screens/quizz/opponent_selection_page.dart';
 import 'package:quizz_app_provider/screens/screens.dart';
 
 CustomTransitionPage transitionPage(GoRouterState state, Widget child) {
@@ -52,6 +53,12 @@ GoRouter router() {
                 final List<Quizz> quizzList = state.extra as List<Quizz>;
                 return transitionPage(
                     state, QuizzSelectionPage(quizzList: quizzList));
+              },
+            ),
+            GoRoute(
+              path: 'opponent_selection',
+              pageBuilder: (context, state) {
+                return transitionPage(state, const OpponentSelectionPage());
               },
             ),
             GoRoute(

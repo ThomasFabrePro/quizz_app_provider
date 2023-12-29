@@ -109,10 +109,14 @@ class User {
     stats.sort((a, b) => b.prctRightAnswers.compareTo(a.prctRightAnswers));
   }
 
-  Future<void> fetchContactsDatas() async {
+  Future<void> fetchAllContactsLists() async {
     (List<Contact>, List<Contact>) result =
-        await contactRepository.fetchContactsDatas();
+        await contactRepository.fetchAllContactsLists();
     contacts = result.$1;
     pendingContactInvitations = result.$2;
+  }
+
+  Future<void> fetchContacts() async {
+    contacts = await contactRepository.fetchContacts();
   }
 }

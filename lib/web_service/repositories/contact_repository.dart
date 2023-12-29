@@ -114,8 +114,8 @@ class ContactRepository extends WebService {
       (
         List<Contact> contactsList,
         List<Contact> pendingContactInvitationsList
-      )> fetchContactsDatas() async {
-    final String path = '/api/users/${user.id}/contacts';
+      )> fetchAllContactsLists() async {
+    final String path = '/api/users/${user.id}/contacts_lists';
     String url = baseUrl + path;
     List<Contact> contactsList = [];
     List<Contact> pendingContactInvitationsList = [];
@@ -135,11 +135,34 @@ class ContactRepository extends WebService {
           pendingContactInvitationsList.add(Contact.fromJson(contact));
         }
       }
+    } catch (e) {
+      debugPrint("ERROR ON FETCH ALL CONTACTS LISTS $e");
+    }
+    return (contactsList, pendingContactInvitationsList);
+  }
+
+  Future<List<Contact>> fetchContacts() async {
+    final String path = '/api/users/${user.id}/contacts';
+    String url = baseUrl + path;
+    List<Contact> contactsList = [];
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+      if (response.statusCode == 201) {
+        dynamic data = jsonDecode(response.body);
+        for (var contact in data['contacts']) {
+          contactsList.add(Contact.fromJson(contact));
+        }
+      }
       // return (contactsList, pendingContactInvitationsList);
     } catch (e) {
       debugPrint("ERROR ON GET CONTACT BY PSEUDO $e");
       // return (contactsList, pendingContactInvitationsList);
     }
-    return (contactsList, pendingContactInvitationsList);
+    return contactsList;
   }
 }
