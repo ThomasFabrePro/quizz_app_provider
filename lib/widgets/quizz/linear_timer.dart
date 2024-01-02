@@ -55,12 +55,12 @@ class _LinearTimerState extends State<LinearTimer> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Quizz>(builder: (context, quizz, child) {
-      if (quizz.question.isAnswered) {
+      if (quizz.actualQuestion.isAnswered) {
         secondsRemaining = 30;
         _barWidth = 1.0;
       }
       return Visibility(
-        visible: !quizz.question.isAnswered,
+        visible: !quizz.actualQuestion.isAnswered,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Stack(

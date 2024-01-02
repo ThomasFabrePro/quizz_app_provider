@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_provider/models/persons/user.dart';
 import 'package:quizz_app_provider/screens/base/base_page.dart';
+import 'package:quizz_app_provider/widgets/buttons/duel_quizz_button.dart';
 import 'package:quizz_app_provider/widgets/buttons/home_contact_button.dart';
 import 'package:quizz_app_provider/widgets/buttons/home_disconnect_button.dart';
 import 'package:quizz_app_provider/widgets/buttons/solo_quizz_button.dart';
@@ -32,6 +33,7 @@ class HomePageContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SoloQuizzButton(),
+            DuelQuizzButton(),
             StatsDivision(),
           ],
         ),

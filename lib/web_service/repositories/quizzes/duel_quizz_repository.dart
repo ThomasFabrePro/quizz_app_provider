@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:quizz_app_provider/models/quizzes/quizz_model.dart';
 import 'package:quizz_app_provider/models/quizzes/quizz_question_model.dart';
+import 'package:quizz_app_provider/web_service/repositories/quizzes/quizz_service.dart';
 import 'package:quizz_app_provider/web_service/web_service.dart';
 import 'package:http/http.dart' as http;
 
-///Responsible for communicating with the API for our quizzes
-class QuizzRepository extends WebService {
-  const QuizzRepository();
-  Future<List<Quizz>> fetchQuizzCategories() async {
+class DuelQuizzRepository extends WebService implements QuizzRepository {
+  const DuelQuizzRepository();
+  @override
+  Future<List<Quizz>> getQuizzCategories() async {
     const String path = '/api/quizzes/categories';
     String url = baseUrl + path;
     try {
@@ -20,10 +21,15 @@ class QuizzRepository extends WebService {
       );
 
       if (response.statusCode == 200) {
-        dynamic categories = jsonDecode(response.body);
+        dynamic data = jsonDecode(response.body);
+        List<dynamic> categories = data["quizzCategories"];
+        categories = categories
+          ..shuffle()
+          ..sublist(0, 5);
+        // categories = categories.sublist(0, 5);
         List<Quizz> quizzCategories = [];
-        for (var category in categories["quizzCategories"]) {
-          quizzCategories.add(Quizz.fromJson(category));
+        for (var category in categories) {
+          quizzCategories.add(Quizz.fromJson(category, this));
         }
         return quizzCategories;
       } else {
@@ -35,7 +41,8 @@ class QuizzRepository extends WebService {
     }
   }
 
-  Future<List<QuizzQuestion>> fetchQuizzQuestions(String category) async {
+  @override
+  Future<List<QuizzQuestion>> getQuizzQuestions(String category) async {
     final String path = '/api/quizzes/${category.toLowerCase()}';
     String url = baseUrl + path;
     try {

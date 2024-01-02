@@ -11,7 +11,7 @@ class AnswerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Quizz>(builder: (context, quizz, child) {
-      List<Color> optionColors = quizz.question.getOptionColors(index);
+      List<Color> optionColors = quizz.actualQuestion.getOptionColors(index);
       return GestureDetector(
         onTap: () {
           quizz.answerQuestion(index);

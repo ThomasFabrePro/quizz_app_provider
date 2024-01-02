@@ -48,11 +48,9 @@ GoRouter router() {
           builder: (context, state) => const HomePage(),
           routes: [
             GoRoute(
-              path: 'quizz_selection',
+              path: 'solo_mode_quizz_selection',
               pageBuilder: (context, state) {
-                final List<Quizz> quizzList = state.extra as List<Quizz>;
-                return transitionPage(
-                    state, QuizzSelectionPage(quizzList: quizzList));
+                return transitionPage(state, const QuizzSelectionPage());
               },
             ),
             GoRoute(

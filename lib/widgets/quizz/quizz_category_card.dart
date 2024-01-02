@@ -16,7 +16,7 @@ class QuizzCategoryCard extends StatelessWidget {
         onTap: quizz.isLoading
             ? null
             : () {
-                quizz.getQuizzQuestions().then((_) {
+                quizz.fetchQuizzQuestions().then((_) {
                   if (quizz.quizzQuestions.isNotEmpty) {
                     context.go("/quizz_game", extra: quizz);
                   } else {
@@ -41,7 +41,6 @@ class QuizzCategoryCard extends StatelessWidget {
                   bottomRight: Radius.circular(90)),
               border: Border.fromBorderSide(BorderSide(
                 color: Colors.white,
-                // color: ThemeConfig.primaryColor,
                 width: 0.5,
               ))),
           child: quizz.isLoading
@@ -50,12 +49,7 @@ class QuizzCategoryCard extends StatelessWidget {
                 )
               : Stack(
                   children: [
-                    // image: DecorationImage(
-                    //   image: AssetImage('assets/quizz_category.png'),
-                    //   fit: BoxFit.cover,
-                    // ),
                     Center(
-                      // left: 8,
                       child: Text(
                         quizz.name,
                         style: const TextStyle(
@@ -65,17 +59,6 @@ class QuizzCategoryCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Positioned(
-                    //   left: 8,
-                    //   child: Text(
-                    //     quizz.name,
-                    //     style: const TextStyle(
-                    //       color: ThemeConfig.primaryColor,
-                    //       fontSize: 24,
-                    //       // fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
         ),
